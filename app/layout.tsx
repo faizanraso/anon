@@ -1,3 +1,5 @@
+import Providers from "./components/Providers";
+import ThemeChanger from "./components/ThemeChanger";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -15,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <Providers>
+        <body className={inter.className}>
+          {children} <ThemeChanger />
+        </body>
+      </Providers>
     </html>
   );
 }
