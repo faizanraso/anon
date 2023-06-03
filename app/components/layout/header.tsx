@@ -3,37 +3,41 @@ import Image from "next/image";
 export default function Header() {
   return (
     <header aria-label="Page Header" className="bg-white dark:bg-black">
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-row items-center justify-between">
-          <div className="block gap-x-2">
-            <svg
-              width="28px"
-              height="28px"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              color="#000000"
-            >
-              <path
-                d="M7 16v-4.639c0-.51.1-.999.285-1.453M17 16v-3.185m-7.778-5.08A5.506 5.506 0 0112 7c2.28 0 4.203 1.33 4.805 3.15M10 17v-2.177M14 17v-5.147C14 10.83 13.105 10 12 10s-2 .83-2 1.853v.794"
-                stroke="#000000"
+          <div className="flex items-center justify-center gap-x-2">
+            <div className="">
+              <svg
+                width="40px"
+                height="40px"
                 stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-              <path
-                d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
-                stroke="#000000"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-            </svg>
-            <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                color="#000000"
+                className="fill-none"
+              >
+                <path
+                  d="M7 16v-4.639c0-.51.1-.999.285-1.453M17 16v-3.185m-7.778-5.08A5.506 5.506 0 0112 7c2.28 0 4.203 1.33 4.805 3.15M10 17v-2.177M14 17v-5.147C14 10.83 13.105 10 12 10s-2 .83-2 1.853v.794"
+                  className="stroke-black dark:stroke-white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+                  className="stroke-black dark:stroke-white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </svg>
+            </div>
+
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl">
               anon
             </h1>
           </div>
+
           <div>
             <button
               type="button"
