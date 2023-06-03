@@ -2,14 +2,17 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header aria-label="Page Header" className="bg-white dark:bg-black">
-      <div className="mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <header
+      aria-label="Page Header"
+      className="bg-white dark:bg-black border border-gray-100 items-center justify-center"
+    >
+      <div className="mx-auto px-5 py-3 sm:py-5 sm:px-10">
         <div className="flex flex-row items-center justify-between">
           <div className="flex items-center justify-center gap-x-2">
             <div className="">
               <svg
-                width="40px"
-                height="40px"
+                width="35px"
+                height="35px"
                 stroke-width="2"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
@@ -33,9 +36,9 @@ export default function Header() {
               </svg>
             </div>
 
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl">
+            <p className="text-2xl font-semibold text-gray-900 dark:text-white sm:text-3xl">
               anon
-            </h1>
+            </p>
           </div>
 
           <div>
@@ -58,7 +61,7 @@ export default function Header() {
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="ms-4 hidden h-5 w-5 text-gray-500 transition group-hover:text-gray-700 sm:block"
+                className="ms-4 hidden h-5 w-5 text-gray-500 transition group-hover:text-gray-700 sm:block dark:text-white dark:group-hover:text-gray-400"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
