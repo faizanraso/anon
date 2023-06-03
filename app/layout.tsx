@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Providers from "./components/Providers";
 import ThemeChanger from "./components/ThemeChanger";
 import "./globals.css";
@@ -5,7 +6,7 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "anon",
   description: "An anoymous community for students and alumni",
 };
@@ -17,10 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Providers>
-        <body className={inter.className}>{children}</body>
-        <ThemeChanger />
-      </Providers>
+      <body className={inter.className}>
+        <Providers>
+          <div className="overflow-x-hidden dark:bg-black">
+            <ThemeChanger />
+            {children}
+          </div>
+        </Providers>
+      </body>
     </html>
   );
 }
