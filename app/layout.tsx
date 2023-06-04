@@ -5,6 +5,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
+import Sidebar from "./components/layout/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +23,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="overflow-x-hidden dark:bg-black">
+          <div className="h-screen overflow-x-hidden dark:bg-black">
             <ThemeChanger />
             <Header />
-            {children}
-            <Footer />
+            <div className="flex flex-row">
+              <Sidebar />
+              {children}
+            </div>
+
+            {/* <Footer /> */}
           </div>
         </Providers>
       </body>
