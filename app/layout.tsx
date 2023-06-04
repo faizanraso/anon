@@ -1,8 +1,9 @@
 import { Metadata } from "next";
-import Providers from "./components/Providers";
-import ThemeChanger from "./components/ThemeChanger";
+import Providers from "./components/theme/Providers";
+import ThemeChanger from "./components/theme/ThemeChanger";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Header from "./components/layout/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <Providers>
           <div className="overflow-x-hidden dark:bg-black">
             <ThemeChanger />
+            <Header />
             {children}
           </div>
         </Providers>
