@@ -23,14 +23,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="h-screen overflow-x-hidden dark:bg-black">
+          <div className="flex min-h-screen flex-col dark:bg-black">
             <ThemeChanger />
             <Header />
-            <div className="flex flex-row">
+            <div className="flex flex-row overflow-auto">
               <Sidebar />
               {children}
             </div>
-
             {/* <Footer /> */}
           </div>
         </Providers>
