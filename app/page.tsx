@@ -2,8 +2,8 @@
 
 export default function Home() {
   return (
-    <main className="w-full">
-      <p>Test</p>
+    <main className="ml-60 w-full">
+      <p className="p-5">TEST</p>
     </main>
   );
 }
