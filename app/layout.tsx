@@ -4,8 +4,6 @@ import ThemeChanger from "./components/theme/ThemeChanger";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "./components/layout/header";
-import Footer from "./components/layout/footer";
-import Sidebar from "./components/layout/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,11 +24,7 @@ export default function RootLayout({
           <div className="flex min-h-screen flex-col dark:bg-black">
             <ThemeChanger />
             <Header />
-            <div className="flex flex-row overflow-auto">
-              <Sidebar />
-              {children}
-            </div>
-            {/* <Footer /> */}
+            {children}
           </div>
         </Providers>
       </body>
