@@ -31,7 +31,7 @@ export default function ThemeChanger() {
   return (
     <button
       onClick={() => changeTheme()}
-      className="fixed z-40 bottom-5 right-5 dark:bg-gray-900 dark:text-yellow-400 bg-gray-100 text-gray-900 w-10 h-10 rounded-full flex justify-center items-center"
+      className="fixed bottom-5 right-5 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-900 hover:bg-gray-300 dark:bg-gray-900 dark:text-yellow-400 dark:hover:bg-gray-700"
     >
       {light ? <Moon /> : <Sun />}
     </button>
