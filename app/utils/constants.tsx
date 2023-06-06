@@ -33,14 +33,12 @@ export const schools = [
 ];
 
 export const programs = [
-  "Arts and Humanities",
+  "Arts, Humanities and Social Sciences",
   "Business and Management",
   "Engineering",
   "Health and Medicine",
-  "Social Sciences",
   "Education",
   "Computer Science",
-  "Fine Arts and Design",
   "Law and Legal Studies",
   "Social Work",
   "Architecture",
@@ -50,6 +48,5 @@ export const programs = [
   "Hospitality and Tourism",
   "Psychology",
   "Mathematics and Statistics",
-  "Physical Education and Sports",
   "Other",
 ];
