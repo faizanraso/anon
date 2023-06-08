@@ -2,7 +2,7 @@
 
 export default function Home() {
   return (
-    <main className="w-full sm:ml-60 p-3">
+    <main className="w-full p-3 sm:ml-60">
       <p className="text-3xl">
         {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
