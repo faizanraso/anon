@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
