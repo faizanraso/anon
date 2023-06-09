@@ -5,13 +5,13 @@ import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 export default async function Login() {
-  // const { data: session, status } = useSession({
-  //   required: true,
-  // });
+  const { data: session, status } = useSession({
+    required: true,
+  });
 
-  // if (status === "authenticated") {
-  //   redirect("/home");
-  // }
+  if (status === "authenticated") {
+    redirect("/home");
+  }
 
   function loginWithGithub() {
     signIn("github", { callbackUrl: `${window.location.origin}/home` });
@@ -29,7 +29,7 @@ export default async function Login() {
             <svg
               width="35px"
               height="35px"
-              stroke-width="2"
+              strokeWidth="2"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
               color="#000000"
