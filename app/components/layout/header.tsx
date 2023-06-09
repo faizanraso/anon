@@ -1,11 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      setIsAuthenticated(true);
+    }
+  }, [session, status]);
 
   return (
     <header
