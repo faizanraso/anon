@@ -65,14 +65,19 @@ export default function Header() {
                 <span className="sr-only">Menu</span>
                 <img
                   alt="Man"
-                  src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  src={session?.user?.image!}
                   className="h-8 w-8 rounded-full object-cover"
                 />
 
                 <p className="ms-2 hidden text-left text-xs sm:block">
-                  <strong className="block font-medium">Eric Frusciante</strong>
+                  <strong className="block font-medium">
+                    {session?.user?.name}
+                  </strong>
 
-                  <span className="text-gray-500"> eric@frusciante.com </span>
+                  <span className="text-gray-500">
+                    {" "}
+                    {session?.user?.email}{" "}
+                  </span>
                 </p>
 
                 <svg
