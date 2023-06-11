@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -13,6 +12,7 @@ export default function Header() {
     if (status === "authenticated") {
       setIsAuthenticated(true);
     }
+    console.log(status);
   }, [session, status]);
 
   return (
@@ -58,11 +58,8 @@ export default function Header() {
           </Link>
 
           {isAuthenticated ? (
-            <div className="flex flex-row items-center justify-center gap-x-3">
-              <button
-                type="button"
-                className="group flex shrink-0 items-center rounded-lg transition"
-              >
+            <div className="flex items-center justify-center gap-x-3">
+              <span className="group flex shrink-0 items-center rounded-lg transition">
                 <span className="sr-only">Menu</span>
                 <div className=" flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 object-cover text-center ">
                   <span className="text-sm font-semibold text-white">
@@ -80,20 +77,26 @@ export default function Header() {
                     {session?.user?.email}{" "}
                   </span>
                 </p>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="ms-4 hidden h-5 w-5 text-gray-500 transition group-hover:text-gray-700 dark:text-white dark:group-hover:text-gray-400 sm:block"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
+                <button onClick={() => signOut()}>
+                  <svg
+                    width="18px"
+                    height="18px"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="ml-3"
+                  >
+                    <path
+                      d="M12 12h7m0 0l-3 3m3-3l-3-3M19 6V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-1"
+                      className="stroke-red-600"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </button>
+              </span>
             </div>
           ) : (
             <div className="flex flex-row items-center justify-center gap-x-3">
