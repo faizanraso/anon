@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
@@ -63,11 +64,11 @@ export default function Header() {
                 className="group flex shrink-0 items-center rounded-lg transition"
               >
                 <span className="sr-only">Menu</span>
-                <img
-                  alt="Man"
-                  src={session?.user?.image!}
-                  className="h-8 w-8 rounded-full object-cover"
-                />
+                <div className=" flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 object-cover text-center ">
+                  <span className="text-sm font-semibold text-white">
+                    {session?.user?.name?.charAt(0)}
+                  </span>
+                </div>
 
                 <p className="ms-2 hidden text-left text-xs sm:block">
                   <strong className="block font-medium">
