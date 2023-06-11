@@ -1,6 +1,12 @@
 "use client";
 
+import { useSession } from "next-auth/react";
+import prisma from "@/lib/prisma";
+
 export default function Home() {
+
+  
+
   return (
     <main className="w-full p-3 sm:ml-60">
       <p className="text-3xl">

@@ -77,22 +77,24 @@ export default function Header() {
                     {session?.user?.email}{" "}
                   </span>
                 </p>
-                <button onClick={() => signOut()}>
+                <button
+                  className="ml-1 items-center justify-center rounded-full p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                  onClick={() => signOut()}
+                >
                   <svg
-                    width="18px"
-                    height="18px"
-                    strokeWidth="1.5"
+                    className="stroke-red-500"
+                    height={18}
+                    stroke-width="2"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="ml-3"
                   >
                     <path
-                      d="M12 12h7m0 0l-3 3m3-3l-3-3M19 6V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-1"
-                      className="stroke-red-600"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"
+                      className="stroke-red-500"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     ></path>
                   </svg>
                 </button>
