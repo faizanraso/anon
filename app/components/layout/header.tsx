@@ -12,7 +12,6 @@ export default function Header() {
     if (status === "authenticated") {
       setIsAuthenticated(true);
     }
-    console.log(status);
   }, [session, status]);
 
   return (
@@ -84,7 +83,7 @@ export default function Header() {
                   <svg
                     className="stroke-red-500"
                     height={18}
-                    stroke-width="2"
+                    strokeWidth="2"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -92,9 +91,9 @@ export default function Header() {
                     <path
                       d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"
                       className="stroke-red-500"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                 </button>
