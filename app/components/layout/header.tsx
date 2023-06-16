@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -57,37 +57,47 @@ export default function Header() {
           </Link>
 
           {isAuthenticated ? (
-            <div className="flex flex-row items-center justify-center gap-x-3">
-              <button
-                type="button"
-                className="group flex shrink-0 items-center rounded-lg transition"
-              >
+            <div className="flex items-center justify-center gap-x-3">
+              <span className="group flex shrink-0 items-center rounded-lg transition">
                 <span className="sr-only">Menu</span>
-                <img
-                  alt="Man"
-                  src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                  className="h-8 w-8 rounded-full object-cover"
-                />
+                <div className=" flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 object-cover text-center ">
+                  <span className="text-sm font-semibold text-white">
+                    {session?.user?.name?.charAt(0)}
+                  </span>
+                </div>
 
                 <p className="ms-2 hidden text-left text-xs sm:block">
-                  <strong className="block font-medium">Eric Frusciante</strong>
+                  <strong className="block font-medium">
+                    {session?.user?.name}
+                  </strong>
 
-                  <span className="text-gray-500"> eric@frusciante.com </span>
+                  <span className="text-gray-500">
+                    {" "}
+                    {session?.user?.email}{" "}
+                  </span>
                 </p>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="ms-4 hidden h-5 w-5 text-gray-500 transition group-hover:text-gray-700 dark:text-white dark:group-hover:text-gray-400 sm:block"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+                <button
+                  className="ml-1 items-center justify-center rounded-full p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700"
+                  onClick={() => signOut()}
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    className="stroke-red-500"
+                    height={18}
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"
+                      className="stroke-red-500"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </button>
+              </span>
             </div>
           ) : (
             <div className="flex flex-row items-center justify-center gap-x-3">
