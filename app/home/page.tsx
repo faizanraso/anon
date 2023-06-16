@@ -1,7 +1,6 @@
 "use client";
 
 export default function Home() {
-  
   async function getUserInfo() {
     const requestOptions = {
       method: "GET",

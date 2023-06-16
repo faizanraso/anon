@@ -1,26 +1,27 @@
 import prisma from "@/lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "GET") {
-    return res.json({ message: "Method Not Allowed" });
+export async function GET(request: Request) {
+  if (request.method !== "GET") {
+    return NextResponse.json(
+      { message: "Method not allowed" },
+      { status: 500 }
+    );
   }
 
   try {
     const session = await getServerSession(authOptions);
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
       where: { email: session?.user?.email! },
     });
-
     if (user?.program === null || user?.school === null) {
-      res.json({ text: "missing" });
+      NextResponse.json({ text: "missing" }, { status: 200 });
     } else {
-      res.json({ text: "found" });
+      NextResponse.json({ text: "found" }, { status: 200 });
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+  } catch (err) {
+    NextResponse.json({ message: "Something went wrong" }, { status: 400 });
   }
 }
