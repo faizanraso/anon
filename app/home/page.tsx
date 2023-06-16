@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 export default function Home() {
   async function getUserInfo() {
     const requestOptions = {
@@ -9,7 +11,7 @@ export default function Home() {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/getProfileInfo",
+        `${window.location.origin}/api/info`,
         requestOptions
       );
       if (response.ok) {
@@ -24,7 +26,9 @@ export default function Home() {
     }
   }
 
-  getUserInfo();
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
   return (
     <main className="w-full p-3 sm:ml-60">
