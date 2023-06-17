@@ -1,30 +1,30 @@
 "use client";
 
+import { useEffect } from "react";
+
 export default function Home() {
-  async function getUserInfo() {
+  useEffect(() => {
+    const missingInfo = !checkInfo();
+    if (missingInfo) {
+      // show popup
+    }
+  }, []);
+
+  async function checkInfo() {
     const requestOptions = {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     };
-
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/getProfileInfo",
-        requestOptions
-      );
+      const response = await fetch("/api/info", requestOptions);
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        console.log("success");
-      } else {
-        console.error("Failed to retrieve user info");
+        console.log(data.complete);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.log(e);
     }
   }
-
-  getUserInfo();
 
   return (
     <main className="w-full p-3 sm:ml-60">
