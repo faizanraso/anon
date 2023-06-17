@@ -3,33 +3,6 @@
 import { useEffect } from "react";
 
 export default function Home() {
-  async function getUserInfo() {
-    const requestOptions = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    };
-
-    try {
-      const response = await fetch(
-        `${window.location.origin}/api/info`,
-        requestOptions
-      );
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        console.log("success");
-      } else {
-        console.error("Failed to retrieve user info");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    getUserInfo();
-  }, []);
-
   return (
     <main className="w-full p-3 sm:ml-60">
       <p className="text-3xl">
