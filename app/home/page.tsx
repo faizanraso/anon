@@ -3,6 +3,29 @@
 import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    const missingInfo = !checkInfo();
+    if (missingInfo) {
+      // show popup
+    }
+  }, []);
+
+  async function checkInfo() {
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+    try {
+      const response = await fetch("/api/info", requestOptions);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.complete);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <main className="w-full p-3 sm:ml-60">
       <p className="text-3xl">
