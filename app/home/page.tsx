@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Modal from "../components/modal/Modal";
 
-export default function Home() {
-  useEffect(() => {
-    const missingInfo = !checkInfo();
-    if (missingInfo) {
-      // show popup
-    }
-  }, []);
+export default async function Home() {
+  const [missingInfo, setMissingInfo] = useState<boolean | undefined>(false);
+
+  const missing = await checkInfo();
+  setMissingInfo(missing);
 
   async function checkInfo() {
     const requestOptions = {
@@ -16,18 +15,26 @@ export default function Home() {
       headers: { "Content-Type": "application/json" },
     };
     try {
-      const response = await fetch("/api/info", requestOptions);
+      const response = await fetch(
+        "http://localhost:3000/api/info",
+        requestOptions
+      );
       if (response.ok) {
         const data = await response.json();
-        console.log(data.complete);
+        if (data.complete === "false") {
+          return true;
+        } else {
+          return false;
+        }
       }
     } catch (e) {
-      console.log(e);
+      return false;
     }
   }
 
   return (
     <main className="w-full p-3 sm:ml-60">
+      <Modal />
       <p className="text-3xl">
         {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
