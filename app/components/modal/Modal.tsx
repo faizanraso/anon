@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
-export default function Modal() {
-  const [open, setOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    setOpen(true);
-  }, []);
-
+export default function Modal(props: { display: boolean }) {
   return (
-    <Dialog.Root defaultOpen={false} open={open}>
+    <Dialog.Root defaultOpen={false} open={props.display}>
       <Dialog.Trigger asChild>
         <button className="text-violet11 shadow-blackA7 hover:bg-mauve3 hidden h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none">
           Edit profile

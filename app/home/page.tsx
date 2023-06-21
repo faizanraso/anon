@@ -2,39 +2,25 @@
 
 import { useEffect, useState } from "react";
 import Modal from "../components/modal/Modal";
+import checkInfo from "../utils/checkinfo";
 
 export default async function Home() {
   const [missingInfo, setMissingInfo] = useState<boolean | undefined>(false);
+  const [showMissingInfoModal, setShowMissingInfoModal] =
+    useState<boolean>(false);
 
   const missing = await checkInfo();
   setMissingInfo(missing);
 
-  async function checkInfo() {
-    const requestOptions = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    };
-    try {
-      const response = await fetch(
-        "http://localhost:3000/api/info",
-        requestOptions
-      );
-      if (response.ok) {
-        const data = await response.json();
-        if (data.complete === "false") {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    } catch (e) {
-      return false;
+  useEffect(() => {
+    if (missingInfo) {
+      setShowMissingInfoModal(true);
     }
-  }
+  }, []);
 
   return (
     <main className="w-full p-3 sm:ml-60">
-      <Modal />
+      <Modal display={showMissingInfoModal} />
       <p className="text-3xl">
         {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
