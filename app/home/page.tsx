@@ -5,22 +5,13 @@ import Modal from "../components/modal/Modal";
 import checkInfo from "../utils/checkinfo";
 
 export default async function Home() {
-  const [missingInfo, setMissingInfo] = useState<boolean | undefined>(false);
-  const [showMissingInfoModal, setShowMissingInfoModal] =
-    useState<boolean>(false);
+
 
   const missing = await checkInfo();
-  setMissingInfo(missing);
-
-  useEffect(() => {
-    if (missingInfo) {
-      setShowMissingInfoModal(true);
-    }
-  }, []);
 
   return (
     <main className="w-full p-3 sm:ml-60">
-      <Modal display={showMissingInfoModal} />
+      <Modal/>
       <p className="text-3xl">
         {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
