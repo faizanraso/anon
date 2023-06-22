@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import { schools, programs } from "@/app/utils/constants";
 
 export default function Modal() {
   const [showModal, setShowModal] = useState(false);
@@ -53,39 +54,34 @@ export default function Modal() {
             </div>
 
             <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-
               <div className="relative">
-                <input
-                  disabled
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  defaultValue={"McMaster University"}
-                />
+                <select className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
+                  {" "}
+                  <option disabled={true} selected>
+                    Select your school
+                  </option>
+                  {schools.map((val, index) => (
+                    <option value={val} key={index}>
+                      {val}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
-                <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
-                  <svg
-                    className="h-4 w-4 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5 19.5V5a2 2 0 012-2h11.4a.6.6 0 01.6.6V21M9 7h6M6.5 15H19M6.5 18H19M6.5 21H19"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                    ></path>
-                    <path
-                      d="M6.5 18c-1 0-1.5-.672-1.5-1.5S5.5 15 6.5 15M6.5 21c-1 0-1.5-.672-1.5-1.5S5.5 18 6.5 18"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                    ></path>
-                  </svg>
-                </span>
+            <div>
+              <div className="relative">
+                <select className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm">
+                  {" "}
+                  <option disabled={true} selected>
+                    Select your program
+                  </option>
+                  {programs.map((val, index) => (
+                    <option value={val} key={index}>
+                      {val}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </form>
