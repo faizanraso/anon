@@ -5,13 +5,11 @@ import Modal from "../components/modal/Modal";
 import checkInfo from "../utils/checkinfo";
 
 export default async function Home() {
-
-
   const missing = await checkInfo();
 
   return (
     <main className="w-full p-3 sm:ml-60">
-      <Modal/>
+      <Modal />
       <p className="text-3xl">
         {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse

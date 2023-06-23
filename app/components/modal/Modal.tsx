@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { schools, programs } from "@/app/utils/constants";
+import checkInfo from "@/app/utils/checkinfo";
 
-export default function Modal() {
+export default async function Modal() {
   const [showModal, setShowModal] = useState(false);
+  const [infoComplete, setInfoComplete] = useState(false);
+
   useEffect(() => {
-    if (true) {
-      setShowModal(true);
-    }
+    const fetchInfo = async () => {
+      const complete = await checkInfo();
+      setInfoComplete(complete === "true");
+    };
+
+    fetchInfo();
   }, []);
+
+  useEffect(() => {
+    setShowModal(!infoComplete);
+  }, [infoComplete]);
 
   return (
     <Dialog.Root defaultOpen={false} open={showModal}>
