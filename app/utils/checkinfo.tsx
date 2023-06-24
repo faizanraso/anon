@@ -10,9 +10,10 @@ export default async function checkInfo() {
   );
 
   if (!response.ok) {
-    return false;
+    return "false";
   }
 
   const data = await response.json();
   return data.complete;
+
 }

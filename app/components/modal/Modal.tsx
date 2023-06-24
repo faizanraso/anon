@@ -1,16 +1,46 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
-import * as Dialog from "@radix-ui/react-dialog";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
+
 import { programs, schools } from "@/app/utils/constants";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
 export default function Modal() {
   const [open, setOpen] = useState<boolean>(false);
+  const [isChecking, setIsChecking] = useState<boolean>(false);
 
   useEffect(() => {
-    setOpen(true);
+    async function checkInfo() {
+      const requestOptions = {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      };
+
+      const response = await fetch(
+        "http://localhost:3000/api/info",
+        requestOptions
+      );
+
+      if (!response.ok) {
+        return;
+      }
+
+      const data = await response.json();
+      if (!data.complete) {
+        setOpen(true);
+      }
+    }
+
+    setIsChecking(true);
+    checkInfo();
+    setIsChecking(false);
   }, []);
+
+  if (isChecking) {
+    return null;
+  }
 
   return (
     <AlertDialog.Root open={open} onOpenChange={setOpen}>
@@ -40,6 +70,7 @@ export default function Modal() {
                 className="inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                 id="username"
                 required
+                minLength={3}
               />
             </fieldset>
             <fieldset className="mb-[15px] flex items-center gap-5">
