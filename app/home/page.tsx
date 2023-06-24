@@ -2,11 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Modal from "../components/modal/Modal";
-import checkInfo from "../utils/checkinfo";
 
-export default async function Home() {
-  const missing = await checkInfo();
-
+export default function Home() {
   return (
     <main className="w-full p-3 sm:ml-60">
       <Modal />

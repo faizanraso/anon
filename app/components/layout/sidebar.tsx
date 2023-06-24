@@ -46,6 +46,26 @@ export default function () {
           >
             Home
           </a>
+          <details className="group [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200">
+              <span className="text-sm font-semibold underline"> Schools </span>
+              <Dropdown />
+            </summary>
+            <nav
+              aria-label="Schools Nav"
+              className="mt-2 flex flex-col space-y-1 px-4"
+            >
+              {schools.map((school, index) => (
+                <a
+                  key={index}
+                  href=""
+                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
+                >
+                  {school}
+                </a>
+              ))}
+            </nav>
+          </details>
           <details
             open
             className="group [&_summary::-webkit-details-marker]:hidden"
@@ -69,26 +89,6 @@ export default function () {
                   className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
                 >
                   {program}
-                </a>
-              ))}
-            </nav>
-          </details>
-          <details className="group [&_summary::-webkit-details-marker]:hidden">
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200">
-              <span className="text-sm font-semibold underline"> Schools </span>
-              <Dropdown />
-            </summary>
-            <nav
-              aria-label="Schools Nav"
-              className="mt-2 flex flex-col space-y-1 px-4"
-            >
-              {schools.map((school, index) => (
-                <a
-                  key={index}
-                  href=""
-                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
-                >
-                  {school}
                 </a>
               ))}
             </nav>
