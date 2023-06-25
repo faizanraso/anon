@@ -43,7 +43,7 @@ export default function Modal() {
     return null;
   }
 
-  async function updateInfo(e) {
+  async function updateInfo(e: React.FormEvent<HTMLFormElement>) {
     const body = {
       username,
       school,
@@ -73,7 +73,7 @@ export default function Modal() {
     <AlertDialog.Root open={open} onOpenChange={setOpen}>
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="fixed inset-0" />
-        <AlertDialog.Content className="fixed left-[50%] top-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+        <AlertDialog.Content className="fixed left-[50%] top-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] text-black shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
           <AlertDialog.Title className="m-0 text-[17px] font-medium">
             Update Profile
           </AlertDialog.Title>
@@ -93,7 +93,7 @@ export default function Modal() {
                 Username
               </label>
               <input
-                className="inline-flex h-[38px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+                className="inline-flex h-[38px] w-full flex-1 items-center justify-center rounded-[4px] bg-white px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                 id="username"
                 required
                 minLength={3}

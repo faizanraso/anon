@@ -8,7 +8,6 @@ export default function Home() {
     <main className="w-full p-3 sm:ml-60">
       <Modal />
       <p className="text-3xl">
-        {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
         dignissim venenatis nibh, sit amet accumsan diam interdum non. Fusce sit
         amet vehicula nibh, a placerat dolor. Aliquam ornare sed odio ac
