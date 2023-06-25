@@ -30,6 +30,7 @@ export const schools = [
   "Western University",
   "Wilfrid Laurier University",
   "York University",
+  "Other",
 ];
 
 export const programs = [
