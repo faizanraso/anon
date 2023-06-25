@@ -5,9 +5,10 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 
 import { programs, schools } from "@/app/utils/constants";
 
-const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
-
 export default function Modal() {
+  const [username, setUsername] = useState<string>("");
+  const [school, setSchool] = useState<string>("");
+  const [program, setProgram] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [isChecking, setIsChecking] = useState<boolean>(false);
 
@@ -42,6 +43,29 @@ export default function Modal() {
     return null;
   }
 
+  async function updateInfo() {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+        school,
+        program,
+      }),
+    };
+
+    const response = await fetch(
+      "http://localhost:3000/api/addUserInfo",
+      requestOptions
+    );
+
+    if (!response.ok) {
+      return;
+    }
+
+    setOpen(false);
+  }
+
   return (
     <AlertDialog.Root open={open} onOpenChange={setOpen}>
       <AlertDialog.Portal>
@@ -54,9 +78,8 @@ export default function Modal() {
             We need some more information before you can start using anon.
           </AlertDialog.Description>
           <form
-            onSubmit={(event) => {
-              wait().then(() => setOpen(false));
-              event.preventDefault();
+            onSubmit={() => {
+              updateInfo();
             }}
           >
             <fieldset className="mb-[15px] flex items-center gap-5">
@@ -67,10 +90,11 @@ export default function Modal() {
                 Username
               </label>
               <input
-                className="inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+                className="inline-flex h-[38px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                 id="username"
                 required
                 minLength={3}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </fieldset>
             <fieldset className="mb-[15px] flex items-center gap-5">
@@ -81,11 +105,13 @@ export default function Modal() {
                 School
               </label>
               <select
-                className="inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+                className="inline-flex w-full h-[38px] flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] "
                 id="program"
+                onChange={(e) => setSchool(e.target.value)}
+                defaultValue={"Select your school"}
                 required
               >
-                <option disabled value="" selected>
+                <option disabled value="Select your school">
                   Select your school
                 </option>
                 {schools.map((val, index) => (
@@ -101,11 +127,13 @@ export default function Modal() {
                 Program
               </label>
               <select
-                className=" inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+                className=" inline-flex w-full h-[38px] flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                 id="program"
+                onChange={(e) => setProgram(e.target.value)}
+                defaultValue={"Select your program"}
                 required
               >
-                <option disabled value="" selected>
+                <option disabled value="Select your program">
                   Select your program
                 </option>
                 {programs.map((val, index) => (
@@ -116,7 +144,7 @@ export default function Modal() {
             <div className="mt-[25px] flex justify-end">
               <button
                 type="submit"
-                className="inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+                className="inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium focus:shadow-[0_0_0_2px] focus:outline-none"
               >
                 Save changes
               </button>
