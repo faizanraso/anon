@@ -9,7 +9,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const { username, school, program } = body;
 
   try {
-    await prisma.user.update({
+    const userUpdate = await prisma.user.update({
       where: {
         email: session?.user?.email!,
       },
@@ -19,6 +19,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         program: program,
       },
     });
+    NextResponse.json(userUpdate);
   } catch (e) {
     console.log(e);
   }

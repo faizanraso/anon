@@ -43,15 +43,17 @@ export default function Modal() {
     return null;
   }
 
-  async function updateInfo() {
+  async function updateInfo(e) {
+    const body = {
+      username,
+      school,
+      program,
+    };
+
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username,
-        school,
-        program,
-      }),
+      body: JSON.stringify(body),
     };
 
     const response = await fetch(
@@ -64,6 +66,7 @@ export default function Modal() {
     }
 
     setOpen(false);
+    e.preventDefault();
   }
 
   return (
@@ -78,8 +81,8 @@ export default function Modal() {
             We need some more information before you can start using anon.
           </AlertDialog.Description>
           <form
-            onSubmit={() => {
-              updateInfo();
+            onSubmit={(e) => {
+              updateInfo(e);
             }}
           >
             <fieldset className="mb-[15px] flex items-center gap-5">
@@ -105,7 +108,7 @@ export default function Modal() {
                 School
               </label>
               <select
-                className="inline-flex w-full h-[38px] flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] "
+                className="inline-flex h-[38px] w-full flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] "
                 id="program"
                 onChange={(e) => setSchool(e.target.value)}
                 defaultValue={"Select your school"}
@@ -127,7 +130,7 @@ export default function Modal() {
                 Program
               </label>
               <select
-                className=" inline-flex w-full h-[38px] flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+                className=" inline-flex h-[38px] w-full flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                 id="program"
                 onChange={(e) => setProgram(e.target.value)}
                 defaultValue={"Select your program"}
