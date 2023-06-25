@@ -147,7 +147,7 @@ export default function Modal() {
             <div className="mt-[25px] flex justify-end">
               <button
                 type="submit"
-                className="inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium focus:shadow-[0_0_0_2px] focus:outline-none"
+                className="inline-flex h-[35px] items-center justify-center rounded-[4px] border border-black px-[15px] font-medium transition duration-100 hover:scale-105 focus:shadow-[0_0_0_2px] focus:outline-none"
               >
                 Save changes
               </button>
