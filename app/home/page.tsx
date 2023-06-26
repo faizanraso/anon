@@ -13,14 +13,23 @@ export default function Home() {
           <PostCard
             title="Test Post"
             postText="This is a long piece of text that will be used for the post sneak peak."
+            school="McMaster University"
+            program="Engineering"
+            author="faizanraso"
           />
           <PostCard
             title="Test Post"
             postText="This is a long piece of text that will be used for the post sneak peak."
+            school="McMaster University"
+            program="Engineering"
+            author="faizanraso"
           />
           <PostCard
             title="Test Post"
             postText="This is a long piece of text that will be used for the post sneak peak."
+            school="McMaster University"
+            program="Engineering"
+            author="faizanraso"
           />
         </div>
       </main>
