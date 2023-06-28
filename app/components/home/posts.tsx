@@ -1,29 +1,57 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import PostCard from "./postcard";
 
 export default async function Posts() {
-  async function retrievePosts() {
-    const requestOptions = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    };
+  const [posts, setPosts] = useState([]);
 
-    const response = await fetch(
-      "http://localhost:3000/api/getPosts",
-      requestOptions
-    );
-    if (!response.ok) {
-      return;
+  useEffect(() => {
+    async function retrievePosts() {
+      const requestOptions = {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      };
+
+      const response = await fetch(
+        "http://localhost:3000/api/getPosts",
+        requestOptions
+      );
+
+      if (!response.ok) {
+        return;
+      }
+
+      const responsePosts = await response.json();
+      setPosts(responsePosts);
     }
-
-    const posts = await response.json();
+    retrievePosts();
     console.log(posts);
-  }
-
-  retrievePosts();
+  }, [posts]);
 
   return (
-    <div>
-      <p>hello</p>
-    </div>
+    <>
+      {posts.map(
+        (
+          post: {
+            title: string;
+            content: string;
+            author: string;
+            school: string;
+            program: string;
+          },
+          index: React.Key | null | undefined
+        ) => (
+          <PostCard
+            key={index}
+            title={post.title}
+            content={post.content}
+            school={post.school}
+            program={post.program}
+            author={"test"}
+          />
+        )
+      )}
+    </>
   );
 }
