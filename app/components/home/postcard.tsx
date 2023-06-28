@@ -9,7 +9,7 @@ export default function PostCard(props: {
 }) {
   return (
     <div className="px-5 md:px-1">
-      <div className="w-full rounded-md border border-black p-5 dark:border-gray-400">
+      <div className="relative h-52 max-h-52 w-full rounded-md border border-black p-5 dark:border-gray-400">
         <div className="flex flex-row justify-end gap-x-2 pb-1 text-right">
           <p className="rounded-full bg-sky-200 px-1.5 py-1 text-[10px] text-black">
             {props.school}
@@ -24,8 +24,8 @@ export default function PostCard(props: {
         <div className="pt-1.5">
           <p className="text-sm">{props.content}</p>
         </div>
-        <div className="pt-4">
-          <p className="text-xs text-gray-500 dark:text-gray-400">
+        <div className="absolute bottom-3 pt-4">
+          <p className="text-xs text-gray-500 dark:text-gray-400 ">
             {props.author}
           </p>
         </div>
