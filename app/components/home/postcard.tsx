@@ -2,7 +2,7 @@ import React from "react";
 
 export default function PostCard(props: {
   title: string;
-  postText: string;
+  content: string;
   school: string;
   program: string;
   author: string;
@@ -22,7 +22,7 @@ export default function PostCard(props: {
           <h1 className="text-md font-semibold">{props.title}</h1>
         </div>
         <div className="pt-1.5">
-          <p className="text-sm">{props.postText}</p>
+          <p className="text-sm">{props.content}</p>
         </div>
         <div className="pt-4">
           <p className="text-xs text-gray-500 dark:text-gray-400">

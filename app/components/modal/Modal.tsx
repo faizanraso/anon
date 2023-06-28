@@ -16,7 +16,9 @@ export default function Modal() {
     async function checkInfo() {
       const requestOptions = {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
       };
 
       const response = await fetch(
@@ -56,10 +58,7 @@ export default function Modal() {
       body: JSON.stringify(body),
     };
 
-    const response = await fetch(
-      "http://localhost:3000/api/addUserInfo",
-      requestOptions
-    );
+    const response = await fetch("/api/addUserInfo", requestOptions);
 
     if (!response.ok) {
       return;

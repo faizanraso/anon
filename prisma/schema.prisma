@@ -70,6 +70,8 @@ model Post {
   title         String
   content       String
   creation_time DateTime @default(now())
+  school        String
+  program       String
 
   @@unique([userId])
 }

@@ -4,7 +4,7 @@ import { programs, schools } from "@/app/utils/constants";
 import React from "react";
 import Dropdown from "../icons/Dropdown";
 
-export default function () {
+export default function Sidebar() {
   function mobileMenu() {
     document.querySelector("#sidemenu")!.classList.toggle("hidden");
     document.querySelector("#sidemenu")!.classList.toggle("z-20");
