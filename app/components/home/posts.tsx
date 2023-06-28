@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import PostCard from "./postcard";
 
 export default async function Posts() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any[]>();
 
   useEffect(() => {
     async function retrievePosts() {
@@ -24,14 +24,14 @@ export default async function Posts() {
 
       const responsePosts = await response.json();
       setPosts(responsePosts);
+      console.log(posts);
     }
     retrievePosts();
-    console.log(posts);
   }, [posts]);
 
   return (
     <>
-      {posts.map(
+      {posts?.map(
         (
           post: {
             title: string;
