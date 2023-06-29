@@ -7,6 +7,20 @@ export default function PostCard(props: {
   program: string;
   author: string;
 }) {
+  
+  // modify post content display
+  const postContent = (content: string) => {
+    let truncated = content.substring(0, 150);
+    let length = 150;
+
+    while (truncated[length - 1] !== " ") {
+      length--;
+      truncated = content.substring(0, length);
+    }
+
+    return truncated.substring(0, length - 1) + "...";
+  };
+
   return (
     <div className="px-5 md:px-1">
       <div className="relative h-52 max-h-52 w-full rounded-md border border-black p-5 dark:border-gray-400">
@@ -22,7 +36,7 @@ export default function PostCard(props: {
           <h1 className="text-md font-semibold">{props.title}</h1>
         </div>
         <div className="pt-1.5">
-          <p className="text-sm">{props.content}</p>
+          <p className="text-sm">{postContent(props.content)}</p>
         </div>
         <div className="absolute bottom-3 pt-4">
           <p className="text-xs text-gray-500 dark:text-gray-400 ">

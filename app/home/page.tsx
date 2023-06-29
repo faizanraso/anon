@@ -46,62 +46,14 @@ export default function Home() {
       <Modal />
       <main className="w-full p-3 sm:ml-60">
         <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <PostCard
-            key={"index"}
-            title={"post.title"}
-            content={"post.content"}
-            school={"post.school"}
-            program={"post.program"}
-            author={"test"}
-          />
-          <PostCard
-            key={"index"}
-            title={"post.title"}
-            content={"post.content"}
-            school={"post.school"}
-            program={"post.program"}
-            author={"test"}
-          />{" "}
-          <PostCard
-            key={"index"}
-            title={"post.title"}
-            content={"post.content"}
-            school={"post.school"}
-            program={"post.program"}
-            author={"test"}
-          />{" "}
-          <PostCard
-            key={"index"}
-            title={"post.title"}
-            content={"post.content"}
-            school={"post.school"}
-            program={"post.program"}
-            author={"test"}
-          />{" "}
-          <PostCard
-            key={"index"}
-            title={"post.title"}
-            content={"post.content"}
-            school={"post.school"}
-            program={"post.program"}
-            author={"test"}
-          />{" "}
-          <PostCard
-            key={"index"}
-            title={"post.title"}
-            content={"post.content"}
-            school={"post.school"}
-            program={"post.program"}
-            author={"test"}
-          />
-          {posts.map((post, index) => (
+          {posts.map((post) => (
             <PostCard
-              key={index}
+              key={post.post_id}
               title={post.title}
               content={post.content}
               school={post.school}
               program={post.program}
-              author={"test"}
+              author={post.author}
             />
           ))}
         </div>
