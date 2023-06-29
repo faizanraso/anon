@@ -35,7 +35,7 @@ export default function Sidebar() {
       </button>
       <div
         id="sidemenu"
-        className="fixed inset-0 top-0 hidden w-60 overflow-y-auto bg-white dark:bg-black sm:block"
+        className="fixed inset-0 top-0 hidden w-60 overflow-y-auto bg-gray-50 dark:bg-black sm:block"
       >
         <div className="h-16">.</div>
 

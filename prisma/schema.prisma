@@ -64,15 +64,15 @@ model VerificationToken {
 }
 
 model Post {
-  author        String   @default("Anonymous")
+  author        String
   post_id       String   @id @default(cuid())
-  user          User?    @relation(fields: [userId], references: [id])
+  user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String?
   title         String
-  content       String
+  content       String   @db.Text
   creation_time DateTime @default(now())
   school        String
   program       String
 
-  @@unique([userId])
+  @@index([userId])
 }
