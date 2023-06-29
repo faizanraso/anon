@@ -16,7 +16,9 @@ export default function Modal() {
     async function checkInfo() {
       const requestOptions = {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
       };
 
       const response = await fetch(
@@ -56,10 +58,7 @@ export default function Modal() {
       body: JSON.stringify(body),
     };
 
-    const response = await fetch(
-      "http://localhost:3000/api/addUserInfo",
-      requestOptions
-    );
+    const response = await fetch("/api/addUserInfo", requestOptions);
 
     if (!response.ok) {
       return;
@@ -147,7 +146,7 @@ export default function Modal() {
             <div className="mt-[25px] flex justify-end">
               <button
                 type="submit"
-                className="inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium focus:shadow-[0_0_0_2px] focus:outline-none"
+                className="inline-flex h-[35px] items-center justify-center rounded-[4px] border border-black px-[15px] font-medium transition duration-100 hover:scale-105 focus:shadow-[0_0_0_2px] focus:outline-none"
               >
                 Save changes
               </button>

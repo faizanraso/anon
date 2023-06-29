@@ -52,6 +52,7 @@ model User {
   program       String?
   accounts      Account[]
   sessions      Session[]
+  Posts         Post[]
 }
 
 model VerificationToken {
@@ -60,4 +61,18 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Post {
+  author        String
+  post_id       String   @id @default(cuid())
+  user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String?
+  title         String
+  content       String   @db.Text
+  creation_time DateTime @default(now())
+  school        String
+  program       String
+
+  @@index([userId])
 }

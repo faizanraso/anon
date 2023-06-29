@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
-import React, { useState, useEffect } from "react";
+import { signOut } from "next-auth/react";
+import React from "react";
 
 export default function UserInfo(props: { session: any }) {
   var isAuthenticated = false;
