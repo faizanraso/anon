@@ -39,13 +39,12 @@ export default function Sidebar() {
       >
         <div className="h-16">.</div>
 
-        <div className="flex items-center justify-center  py-5">
+        <div className="flex flex-col items-center justify-center pb-3 pt-5">
           <button className="inline-block rounded border border-blue-500 bg-blue-500 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400">
             Write a Post
           </button>
+          <div className="w-10/12 border-0 border-b border-gray-200 pt-5 dark:border-gray-500"></div>
         </div>
-
-        <div className="py-3"></div>
 
         <nav aria-label="Side Nav" className="flex flex-col space-y-1">
           <a
