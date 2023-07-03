@@ -11,12 +11,19 @@ export default function PostCard(props: {
   // modify post content display
   const postContent = (content: string) => {
     let truncated = content.substring(0, 125);
+    let didTruncate = false;
     let length = 125;
+
+    if (content.length <= 125) {
+      return truncated.substring(0, length - 1);
+    }
 
     while (truncated[length - 1] !== " ") {
       length--;
       truncated = content.substring(0, length);
+      didTruncate = true;
     }
+
     return truncated.substring(0, length - 1) + "...";
   };
 
