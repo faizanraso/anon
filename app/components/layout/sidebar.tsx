@@ -39,16 +39,24 @@ export default function Sidebar() {
       >
         <div className="h-16">.</div>
 
+        <div className="flex items-center justify-center  py-5">
+          <button className="inline-block rounded border border-blue-500 bg-blue-500 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400">
+            Write a Post
+          </button>
+        </div>
+
+        <div className="py-3"></div>
+
         <nav aria-label="Side Nav" className="flex flex-col space-y-1">
           <a
             href=""
-            className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 underline dark:bg-black dark:text-gray-200"
+            className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 dark:bg-black dark:text-gray-200"
           >
             Home
           </a>
           <details className="group [&_summary::-webkit-details-marker]:hidden">
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200">
-              <span className="text-sm font-semibold underline"> Schools </span>
+            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200">
+              <span className="text-sm font-semibold"> Schools </span>
               <Dropdown />
             </summary>
             <nav
@@ -59,7 +67,7 @@ export default function Sidebar() {
                 <a
                   key={index}
                   href=""
-                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
+                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
                 >
                   {school}
                 </a>
@@ -70,11 +78,8 @@ export default function Sidebar() {
             open
             className="group [&_summary::-webkit-details-marker]:hidden"
           >
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200">
-              <span className="text-sm font-semibold underline">
-                {" "}
-                Programs{" "}
-              </span>
+            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200">
+              <span className="text-sm font-semibold"> Programs </span>
               <Dropdown />
             </summary>
 
@@ -86,7 +91,7 @@ export default function Sidebar() {
                 <a
                   key={index}
                   href=""
-                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
+                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500  hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
                 >
                   {program}
                 </a>
