@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import Modal from "../components/modal/Modal";
+import InfoModal from "../components/modals/InfoModal";
 import PostCard from "../components/home/postcard";
 
 export default function Home() {
@@ -43,7 +43,7 @@ export default function Home() {
 
   return (
     <>
-      <Modal />
+      <InfoModal />
       <main className="w-full p-3 sm:ml-60">
         <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (

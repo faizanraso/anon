@@ -5,7 +5,7 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 
 import { programs, schools } from "@/app/utils/constants";
 
-export default function Modal() {
+export default function InfoModal() {
   const [username, setUsername] = useState<string>("");
   const [school, setSchool] = useState<string>("");
   const [program, setProgram] = useState<string>("");
