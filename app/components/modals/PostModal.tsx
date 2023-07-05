@@ -3,6 +3,30 @@ import * as Dialog from "@radix-ui/react-dialog";
 
 export default function PostModal() {
   const [open, setOpen] = useState<boolean>(false);
+  const [postTitle, setPostTitle] = useState<string>("");
+  const [postContent, setPostContent] = useState<string>("");
+
+  async function submitPost(e: React.FormEvent<HTMLFormElement>) {
+    const body = {
+      postTitle,
+      postContent,
+    };
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    };
+
+    const response = await fetch("/api/submitPost", requestOptions);
+
+    if (!response.ok) {
+      return;
+    }
+
+    setOpen(false);
+    e.preventDefault();
+  }
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -17,67 +41,23 @@ export default function PostModal() {
           </Dialog.Description>
           <form
             onSubmit={(e) => {
-              updateInfo(e);
+              submitPost(e);
             }}
           >
             <fieldset className="mb-[15px] flex items-center gap-5">
               <label
                 className="w-[90px] text-right text-[15px]"
-                htmlFor="username"
+                htmlFor="title"
               >
                 Username
               </label>
               <input
                 className="inline-flex h-[38px] w-full flex-1 items-center justify-center rounded-[4px] bg-white px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                id="username"
+                id="title"
                 required
-                minLength={3}
-                onChange={(e) => setUsername(e.target.value)}
+                minLength={1}
+                onChange={(e) => setPostTitle(e.target.value)}
               />
-            </fieldset>
-            <fieldset className="mb-[15px] flex items-center gap-5">
-              <label
-                className="w-[90px] text-right text-[15px]"
-                htmlFor="school"
-              >
-                School
-              </label>
-              <select
-                className="inline-flex h-[38px] w-full flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] "
-                id="program"
-                onChange={(e) => setSchool(e.target.value)}
-                defaultValue={"Select your school"}
-                required
-              >
-                <option disabled value="Select your school">
-                  Select your school
-                </option>
-                {schools.map((val, index) => (
-                  <option key={index}>{val}</option>
-                ))}
-              </select>
-            </fieldset>
-            <fieldset className="mb-[15px] flex items-center gap-5">
-              <label
-                className="w-[90px] text-right text-[15px]"
-                htmlFor="program"
-              >
-                Program
-              </label>
-              <select
-                className=" inline-flex h-[38px] w-full flex-1 items-center justify-center rounded-[4px] border-0 px-[10px] text-[15px] shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-                id="program"
-                onChange={(e) => setProgram(e.target.value)}
-                defaultValue={"Select your program"}
-                required
-              >
-                <option disabled value="Select your program">
-                  Select your program
-                </option>
-                {programs.map((val, index) => (
-                  <option key={index}>{val}</option>
-                ))}
-              </select>
             </fieldset>
             <div className="mt-[25px] flex justify-end">
               <button
