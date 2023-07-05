@@ -1,10 +1,21 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+
 import { programs, schools } from "@/app/utils/constants";
-import React from "react";
-import Dropdown from "../icons/Dropdown";
+import Dropdown from "../../icons/Dropdown";
 
 export default function Sidebar() {
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      setLoggedIn(true);
+    }
+  }, [status]);
+
   function mobileMenu() {
     document.querySelector("#sidemenu")!.classList.toggle("hidden");
     document.querySelector("#sidemenu")!.classList.toggle("z-20");
@@ -39,12 +50,14 @@ export default function Sidebar() {
       >
         <div className="h-16">.</div>
 
-        <div className="flex flex-col items-center justify-center pb-3 pt-5">
-          <button className="inline-block rounded border border-blue-500 bg-blue-500 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400">
-            Write a Post
-          </button>
-          <div className="w-10/12 border-0 border-b border-gray-200 pt-5 dark:border-gray-500"></div>
-        </div>
+        {loggedIn ? (
+          <div className="flex flex-col items-center justify-center pb-3 pt-5">
+            <button className="inline-block rounded border border-blue-500 bg-blue-500 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400">
+              Write a Post
+            </button>
+            <div className="w-10/12 border-0 border-b border-gray-200 pt-5 dark:border-gray-500"></div>
+          </div>
+        ) : null}
 
         <nav aria-label="Side Nav" className="flex flex-col space-y-1">
           <a
