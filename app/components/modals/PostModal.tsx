@@ -26,14 +26,13 @@ export default function PostModal(props: { sessionStatus: any }) {
     if (!response.ok) {
       return;
     }
-
     setOpen(false);
   }
 
   return (
     <>
       {props.sessionStatus ? (
-        <Dialog.Root>
+        <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger asChild>
             <button className="inline-block rounded border border-blue-500 px-12 py-3 text-sm font-semibold text-blue-500 hover:bg-blue-400 hover:text-white focus:outline-none focus:ring active:text-white">
               Write a Post
@@ -45,7 +44,11 @@ export default function PostModal(props: { sessionStatus: any }) {
               <Dialog.Title className="my-5 text-[17px] font-medium text-black">
                 Write a Post 💭
               </Dialog.Title>
-              <form onSubmit={(e) => submitPost(e)}>
+              <form
+                onSubmit={(e) => {
+                  submitPost(e);
+                }}
+              >
                 <fieldset className="mb-[15px] flex items-center gap-5">
                   <input
                     className="w-full rounded-lg border border-gray-600 p-3 text-sm"

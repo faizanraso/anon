@@ -17,6 +17,7 @@ export async function POST(req: Request) {
         content: postContent,
         school: user?.school!,
         program: user?.program!,
+        userId: user?.id,
       },
     });
   } catch (e) {
