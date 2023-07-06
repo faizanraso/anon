@@ -1,34 +1,25 @@
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
-import { NextRequest } from "next/server";
 
-export async function POST() {
-
-    const session = await getServerSession(authOptions);
-
+export async function POST(req: Request) {
   try {
-    const
+    const session = await getServerSession(authOptions);
+    const body = await req.json();
+    const { postTitle, postContent } = body;
+    const user = await prisma.user.findFirst({
+      where: { email: session?.user?.email },
+    });
     await prisma.post.create({
-
-    })
+      data: {
+        author: user?.username!,
+        title: postTitle,
+        content: postContent,
+        school: user?.school!,
+        program: user?.program!,
+      },
+    });
   } catch (e) {
-    throw new Error(e);
+    console.log(e);
   }
 }
-
-
-model Post {
-    author        String
-    post_id       String   @id @default(cuid())
-    user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-    userId        String?
-    title         String
-    content       String   @db.Text
-    creation_time DateTime @default(now())
-    school        String
-    program       String
-  
-    @@index([userId])
-  }
-  

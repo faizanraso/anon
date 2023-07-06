@@ -55,6 +55,7 @@ export default function PostModal(props: { sessionStatus: any }) {
                     type="text"
                     required
                     minLength={3}
+                    onChange={(e) => setPostTitle(e.target.value)}
                   />
                 </fieldset>
                 <fieldset className="mb-[15px] flex items-center gap-5">
@@ -74,14 +75,12 @@ export default function PostModal(props: { sessionStatus: any }) {
                 </fieldset>
                 <div className="mt-[25px] flex justify-between">
                   <p className="text-xs text-gray-500">{postLength}/2500</p>
-                  {/* <Dialog.Close asChild> */}
                   <button
                     type="submit"
                     className="inline-block rounded border border-black bg-black px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-black focus:outline-none focus:ring active:text-white"
                   >
                     Post
                   </button>
-                  {/* </Dialog.Close> */}
                 </div>
               </form>
 
