@@ -28,7 +28,6 @@ export default function PostModal(props: { sessionStatus: any }) {
     }
 
     setOpen(false);
-    e.preventDefault();
   }
 
   return (
