@@ -5,7 +5,7 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 
 import { programs, schools } from "@/app/utils/constants";
 
-export default function Modal() {
+export default function InfoModal() {
   const [username, setUsername] = useState<string>("");
   const [school, setSchool] = useState<string>("");
   const [program, setProgram] = useState<string>("");
@@ -79,11 +79,7 @@ export default function Modal() {
           <AlertDialog.Description className="mb-5 mt-[10px] text-[15px] leading-normal">
             We need some more information before you can start using anon.
           </AlertDialog.Description>
-          <form
-            onSubmit={(e) => {
-              updateInfo(e);
-            }}
-          >
+          <form onSubmit={(e) => updateInfo(e)}>
             <fieldset className="mb-[15px] flex items-center gap-5">
               <label
                 className="w-[90px] text-right text-[15px]"

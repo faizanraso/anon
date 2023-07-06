@@ -1,52 +1,32 @@
-"use client";
+import React from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 import { programs, schools } from "@/app/utils/constants";
-import React from "react";
-import Dropdown from "../icons/Dropdown";
+import Dropdown from "../../icons/Dropdown";
+import PostModal from "../../modals/PostModal";
+import MobileMenu from "./MobileMenu";
 
-export default function Sidebar() {
-  function mobileMenu() {
-    document.querySelector("#sidemenu")!.classList.toggle("hidden");
-    document.querySelector("#sidemenu")!.classList.toggle("z-20");
-  }
+export default async function Sidebar() {
+  const session = await getServerSession(authOptions);
 
   return (
     <>
-      <button
-        onClick={() => mobileMenu()}
-        className="fixed bottom-5 left-5 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-900 hover:bg-gray-300 dark:bg-gray-900 dark:text-yellow-400 dark:hover:bg-gray-700 sm:hidden"
-      >
-        <svg
-          width="24px"
-          height="24px"
-          strokeWidth="1.5"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="stroke-black transition-colors duration-150 dark:stroke-gray-100 "
-        >
-          <path
-            d="M3 5h18M3 12h18M3 19h18"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          ></path>
-        </svg>
-      </button>
+      <MobileMenu />
       <div
         id="sidemenu"
-        className="fixed inset-0 top-0 hidden w-60 overflow-y-auto bg-gray-50 dark:bg-black sm:block"
+        className="fixed inset-0 top-0 hidden w-60 overflow-y-auto bg-gray-50 pt-16 dark:bg-black sm:block"
       >
-        <div className="h-16">.</div>
+        {session ? (
+          <>
+            <div className="flex flex-col items-center justify-center py-4">
+              <PostModal sessionStatus={session} />
+            </div>
+            <div className="mx-auto flex w-10/12 border-0 border-b border-gray-200 dark:border-gray-500"></div>
+          </>
+        ) : null}
 
-        <div className="flex flex-col items-center justify-center pb-3 pt-5">
-          <button className="inline-block rounded border border-blue-500 bg-blue-500 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400">
-            Write a Post
-          </button>
-          <div className="w-10/12 border-0 border-b border-gray-200 pt-5 dark:border-gray-500"></div>
-        </div>
-
-        <nav aria-label="Side Nav" className="flex flex-col space-y-1">
+        <nav aria-label="Side Nav" className="flex flex-col space-y-1 pt-2">
           <a
             href=""
             className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 dark:bg-black dark:text-gray-200"

@@ -1,52 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
-import Modal from "../components/modal/Modal";
+import InfoModal from "../components/modals/InfoModal";
 import PostCard from "../components/home/postcard";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [posts, setPosts] = useState<any[]>([]);
 
+  const fetcher = (url: RequestInfo | URL) =>
+    fetch(url).then((res) => res.json());
+  const { data, error, isLoading } = useSWR("/api/getPosts", fetcher);
+
   useEffect(() => {
-    async function retrievePosts() {
-      const requestOptions = {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      };
-
-      try {
-        const response = await fetch(
-          "http://localhost:3000/api/getPosts",
-          requestOptions
-        );
-
-        if (!response.ok) {
-          return;
-        }
-        const responsePosts = await response.json();
-        setPosts(responsePosts);
-      } catch (e) {
-        console.log(e);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    retrievePosts();
-  }, []);
+    setPosts(data);
+  }, [data]);
 
   if (isLoading) {
     return null;
   }
 
+  if (error) {
+    return "error";
+  }
+
   return (
     <>
-      <Modal />
+      <InfoModal />
       <main className="w-full p-3 sm:ml-60">
         <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {posts?.map((post) => (
             <PostCard
               key={post.post_id}
               title={post.title}
