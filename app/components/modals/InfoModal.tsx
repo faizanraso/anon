@@ -79,11 +79,7 @@ export default function InfoModal() {
           <AlertDialog.Description className="mb-5 mt-[10px] text-[15px] leading-normal">
             We need some more information before you can start using anon.
           </AlertDialog.Description>
-          <form
-            onSubmit={(e) => {
-              updateInfo(e);
-            }}
-          >
+          <form onSubmit={(e) => updateInfo(e)}>
             <fieldset className="mb-[15px] flex items-center gap-5">
               <label
                 className="w-[90px] text-right text-[15px]"
