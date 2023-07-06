@@ -7,6 +7,7 @@ export default function PostModal(props: { sessionStatus: any }) {
   const [open, setOpen] = useState<boolean>(false);
   const [postTitle, setPostTitle] = useState<string>("");
   const [postContent, setPostContent] = useState<string>("");
+  const [postLength, setPostLength] = useState<number>(0);
 
   async function submitPost(e: React.FormEvent<HTMLFormElement>) {
     const body = {
@@ -35,13 +36,13 @@ export default function PostModal(props: { sessionStatus: any }) {
       {props.sessionStatus ? (
         <Dialog.Root>
           <Dialog.Trigger asChild>
-            <button className="inline-block rounded border border-blue-500 bg-blue-500 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400">
-              Edit profile
+            <button className="inline-block rounded border border-blue-500 px-12 py-3 text-sm font-semibold text-blue-500 hover:bg-blue-400 hover:text-white focus:outline-none focus:ring active:text-white">
+              Write a Post
             </button>
           </Dialog.Trigger>
           <Dialog.Portal>
             <Dialog.Overlay className="fixed inset-0" />
-            <Dialog.Content className="fixed left-[50%] top-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+            <Dialog.Content className="fixed left-[50%] top-[50%] max-h-[85vh] w-[90vw] max-w-[600px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
               <Dialog.Title className="my-5 text-[17px] font-medium text-black">
                 Write a Post 💭
               </Dialog.Title>
@@ -58,16 +59,21 @@ export default function PostModal(props: { sessionStatus: any }) {
                 </fieldset>
                 <fieldset className="mb-[15px] flex items-center gap-5">
                   <textarea
-                    className="w-full rounded-lg border-gray-600 p-3 text-sm"
+                    className="w-full resize-none rounded-lg border-gray-600 p-3 text-sm"
                     placeholder="Write your thoughts here..."
-                    rows={9}
+                    rows={8}
                     id="post"
                     minLength={3}
-                    maxLength={250}
+                    maxLength={2500}
                     required
-                  ></textarea>
+                    onChange={(e) => {
+                      setPostContent(e.target.value);
+                      setPostLength(e.target.value.length);
+                    }}
+                  />
                 </fieldset>
-                <div className="mt-[25px] flex justify-end">
+                <div className="mt-[25px] flex justify-between">
+                  <p className="text-xs text-gray-500">{postLength}/2500</p>
                   {/* <Dialog.Close asChild> */}
                   <button
                     type="submit"
@@ -78,6 +84,7 @@ export default function PostModal(props: { sessionStatus: any }) {
                   {/* </Dialog.Close> */}
                 </div>
               </form>
+
               <Dialog.Close asChild>
                 <button
                   className="absolute right-[10px] top-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
