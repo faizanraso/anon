@@ -4,7 +4,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 import { programs, schools } from "@/app/utils/constants";
 import Dropdown from "../../icons/Dropdown";
-import PostButton from "./PostButton";
+import PostModal from "../../modals/PostModal";
 import MobileMenu from "./MobileMenu";
 
 export default async function Sidebar() {
@@ -18,8 +18,10 @@ export default async function Sidebar() {
         className="fixed inset-0 top-0 hidden w-60 overflow-y-auto bg-gray-50 dark:bg-black sm:block"
       >
         <div className="h-16">.</div>
-
-        <PostButton sessionStatus={session} />
+        <div className="flex flex-col items-center justify-center pb-3 pt-5">
+          <PostModal sessionStatus={session} />
+        </div>
+        <div className="w-10/12 border-0 border-b border-gray-200 pt-5 dark:border-gray-500"></div>
 
         <nav aria-label="Side Nav" className="flex flex-col space-y-1">
           <a
