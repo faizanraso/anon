@@ -26,6 +26,7 @@ export default function PostModal(props: { sessionStatus: any }) {
     if (!response.ok) {
       return;
     }
+    
     setOpen(false);
   }
 
