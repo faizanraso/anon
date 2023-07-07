@@ -7,32 +7,29 @@ export default function PostPage({ params }: { params: { postId: string } }) {
 
   useEffect(() => {
     async function getSelectedPost() {
-      const postId = params.postId;
-      const body = {
-        postId,
-      };
-
       const requestOptions = {
-        method: "POST",
+        method: "GET",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
       };
 
-      const response = await fetch("/api/getSelectedPost", requestOptions);
+      const response = await fetch(
+        "/api/getSelectedPost?postId=" + params.postId,
+        requestOptions
+      );
       const data = await response.json();
 
-      console.log(data);
       if (!response.ok) {
         return;
       }
+
       setPostData(data);
     }
     getSelectedPost();
   }, []);
 
   return (
-    <div className="w-full p-3 sm:ml-60">
-      <p>{}</p>
+    <div className="w-full px-8 py-3 sm:ml-60">
+      <p>asda</p>
     </div>
   );
 }
