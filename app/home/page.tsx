@@ -11,7 +11,7 @@ export default function Home() {
 
   const fetcher = (url: RequestInfo | URL) =>
     fetch(url).then((res) => res.json());
-  const { data, error, isLoading } = useSWR("/api/getPosts", fetcher);
+  const { data, error, isLoading } = useSWR("/api/getAllPosts", fetcher);
 
   useEffect(() => {
     setPosts(data);
@@ -38,6 +38,7 @@ export default function Home() {
               school={post.school}
               program={post.program}
               author={post.author}
+              postId={post.post_id}
             />
           ))}
         </div>

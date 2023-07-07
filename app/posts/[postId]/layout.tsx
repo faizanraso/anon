@@ -1,10 +1,9 @@
 import { Metadata } from "next";
-import Providers from "../components/theme/Providers";
-import ThemeChanger from "../components/theme/ThemeChanger";
-import "../globals.css";
+import Providers from "@/app/components/theme/Providers";
+import ThemeChanger from "@/app/components/theme/ThemeChanger";
 import { Inter } from "next/font/google";
-import Header from "../components/layout/header/header";
-import Sidebar from "../components/layout/sidebar/sidebar";
+import Header from "@/app/components/layout/header/header";
+import Sidebar from "@/app/components/layout/sidebar/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
