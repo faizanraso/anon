@@ -7,6 +7,7 @@ export default function PostCard(props: {
   school: string;
   program: string;
   author: string;
+  postId: string
 }) {
   // modify post content display
   const postContent = (content: string) => {
@@ -28,7 +29,7 @@ export default function PostCard(props: {
   };
 
   return (
-    <Link href={"/"}>
+    <Link href={"/posts/" + props.postId}>
       <div className="px-5 md:px-1">
         <div className="relative h-56 max-h-56 w-full rounded-md border border-black p-5 transition duration-150 hover:shadow-md dark:border-neutral-700 dark:shadow-gray-500">
           <div className="flex flex-row justify-end gap-x-2 pb-1 text-right">
