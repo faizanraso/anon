@@ -2,7 +2,7 @@
 
 import CommentsArea from "@/app/components/posts/CommentsArea";
 import PostContent from "@/app/components/posts/PostContent";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function PostPage({ params }: { params: { postId: string } }) {
   return (
