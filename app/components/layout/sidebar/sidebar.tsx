@@ -28,7 +28,7 @@ export default async function Sidebar() {
 
         <nav aria-label="Side Nav" className="flex flex-col space-y-1 pt-2">
           <a
-            href=""
+            href="/home"
             className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 dark:bg-black dark:text-gray-200"
           >
             Home
