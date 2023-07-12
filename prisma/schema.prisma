@@ -53,6 +53,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Posts         Post[]
+  Comment       Comment[]
 }
 
 model VerificationToken {
@@ -65,14 +66,28 @@ model VerificationToken {
 
 model Post {
   author        String
-  post_id       String   @id @default(cuid())
-  user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post_id       String    @id @default(cuid())
+  user          User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String?
   title         String
-  content       String   @db.Text
-  creation_time DateTime @default(now())
+  content       String    @db.Text
+  creation_time DateTime  @default(now())
   school        String
   program       String
+  comments      Comment[]
+
+  @@index([userId])
+}
+
+model Comment {
+  author        String
+  comment_id    String   @id @default(cuid())
+  user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String?
+  comment       String   @db.Text
+  creation_time DateTime @default(now())
+  Post          Post?    @relation(fields: [postPost_id], references: [post_id])
+  postPost_id   String?
 
   @@index([userId])
 }
