@@ -35,8 +35,8 @@ export default function PostModal(props: { sessionStatus: any }) {
       {props.sessionStatus ? (
         <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger asChild>
-            <button className="inline-block rounded border border-blue-500 px-12 py-3 text-sm font-semibold text-blue-500 hover:bg-blue-400 hover:text-white focus:outline-none focus:ring active:text-white">
-              Write a Post
+            <button className="inline-block rounded border border-blue-500 px-12 py-3 text-sm font-semibold text-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring active:text-white">
+              Write a Post 💭
             </button>
           </Dialog.Trigger>
           <Dialog.Portal>
