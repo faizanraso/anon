@@ -43,17 +43,20 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  username      String?   @unique
   email         String?   @unique
+  name          String?
   emailVerified DateTime?
   image         String?
-  username      String?
   school        String?
   program       String?
   accounts      Account[]
   sessions      Session[]
   Posts         Post[]
   Comment       Comment[]
+
+  @@unique([id, username])
+  @@unique([id, username, school])
 }
 
 model VerificationToken {
@@ -65,9 +68,9 @@ model VerificationToken {
 }
 
 model Post {
-  author        String
+  user          User?     @relation(fields: [userId, username], references: [id, username], onDelete: Cascade)
+  username      String
   post_id       String    @id @default(cuid())
-  user          User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String?
   title         String
   content       String    @db.Text
@@ -76,18 +79,20 @@ model Post {
   program       String
   comments      Comment[]
 
-  @@index([userId])
+  @@index([userId, username])
 }
 
 model Comment {
-  author        String
+  user          User?    @relation(fields: [userId, username, school], references: [id, username, school], onDelete: Cascade)
+  username      String
+  school        String
   comment_id    String   @id @default(cuid())
-  user          User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String?
   comment       String   @db.Text
   creation_time DateTime @default(now())
-  Post          Post?    @relation(fields: [postPost_id], references: [post_id])
-  postPost_id   String?
+  Post          Post?    @relation(fields: [post_id], references: [post_id])
+  post_id       String?
 
-  @@index([userId])
+  @@index([userId, username, school])
+  @@index([post_id])
 }

@@ -33,13 +33,15 @@ export default function InfoModal() {
       const data = await response.json();
       if (!data.complete) {
         setOpen(true);
+      } else {
+        setOpen(false);
       }
     }
 
     setIsChecking(true);
     checkInfo();
     setIsChecking(false);
-  }, []);
+  }, [open]);
 
   if (isChecking) {
     return null;

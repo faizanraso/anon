@@ -37,7 +37,7 @@ export default function Home() {
               content={post.content}
               school={post.school}
               program={post.program}
-              author={post.author}
+              username={post.username}
               postId={post.post_id}
             />
           ))}

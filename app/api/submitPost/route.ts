@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     });
     await prisma.post.create({
       data: {
-        author: user?.username!,
+        username: user?.username!,
         title: postTitle,
         content: postContent,
         school: user?.school!,

@@ -1,7 +1,11 @@
 import Link from "next/link";
 import React from "react";
 
-export default function CommentBox() {
+export default function CommentBox(props: { comment: any }) {
+  function compareDates(now_date: string) {
+    
+  }
+
   return (
     <div className="">
       <div className="flex flex-col gap-y-4 border-t border-gray-200 py-4 dark:border-neutral-700">
@@ -11,26 +15,21 @@ export default function CommentBox() {
             href="/"
             className="transition duration-100 hover:text-gray-600 hover:underline dark:hover:text-gray-300"
           >
-            school name
+            {props.comment.school}
           </Link>{" "}
           <span>|</span>{" "}
           <Link
             href={"/"}
             className="transition duration-100 hover:text-gray-600 hover:underline dark:hover:text-gray-300"
           >
-            @username
+            @{props.comment.username}
           </Link>
         </p>
-        <p className="">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mauris
-          elit, feugiat a maximus sed, rhoncus nec sapien. Vivamus vitae
-          sagittis libero, vel dictum justo. Nunc quis nunc non nisi mattis
-          feugiat.
-        </p>
-        <div className="flex flex-row items-center gap-x-1">
+        <p className="text-sm">{props.comment.comment}</p>
+        <div className="flex flex-row items-center gap-x-1 pt-3">
           <svg
-            width="15px"
-            height="15px"
+            width="12px"
+            height="12px"
             stroke-width="1.5"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +52,9 @@ export default function CommentBox() {
               className="fill-none dark:stroke-gray-300"
             ></path>
           </svg>
-          <p className="text-sm">Date</p>
+          <p className="text-xs text-gray-600 dark:text-gray-300">
+            {compareDates(props.comment.creation_time)}
+          </p>
         </div>
       </div>
     </div>

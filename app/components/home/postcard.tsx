@@ -6,8 +6,8 @@ export default function PostCard(props: {
   content: string;
   school: string;
   program: string;
-  author: string;
-  postId: string
+  username: string;
+  postId: string;
 }) {
   // modify post content display
   const postContent = (content: string) => {
@@ -48,7 +48,7 @@ export default function PostCard(props: {
           </div>
           <div className="absolute bottom-3">
             <p className="text-xs text-gray-500 dark:text-gray-400 ">
-              {props.author}
+              {props.username}
             </p>
           </div>
         </div>
