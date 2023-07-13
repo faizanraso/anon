@@ -2,7 +2,17 @@ import Link from "next/link";
 import React from "react";
 
 export default function CommentBox(props: { comment: any }) {
-  function compareDates(now_date: string) {}
+  function compareDates(creation_time: string) {
+    const postDate = new Date(creation_time.slice(0, 10));
+
+    return (
+      postDate.toLocaleString("default", { month: "long" }) +
+      " " +
+      postDate.getDate() +
+      ", " +
+      postDate.getFullYear()
+    );
+  }
 
   return (
     <div className="">
@@ -51,7 +61,7 @@ export default function CommentBox(props: { comment: any }) {
             ></path>
           </svg>
           <p className="text-xs text-gray-600 dark:text-gray-300">
-            {/* {compareDates(props.comment.creation_time)} */}
+            {compareDates(props.comment.creation_time)}
           </p>
         </div>
       </div>
