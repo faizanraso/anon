@@ -4,10 +4,8 @@ import React from "react";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
-export default async function Login() {
-  const { data: session, status } = useSession({
-    required: true,
-  });
+export default function Login() {
+  const { data: session, status } = useSession();
 
   if (status === "authenticated") {
     redirect("/home");
