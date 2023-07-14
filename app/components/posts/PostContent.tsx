@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import Comment from "./Comment";
 import CommentBox from "./CommentBox";
 
 export default function PostContent(props: { postId: string }) {
@@ -33,8 +34,8 @@ export default function PostContent(props: { postId: string }) {
 
   return (
     <main>
-      <section className="border border-gray-200 dark:border-neutral-700">
-        <div className="px-10 py-5">
+      <section className="py-4">
+        <div className="border border-gray-200 px-10 py-5 dark:border-neutral-700">
           <div>
             <h1 className="text-3xl font-semibold">{postData.title}</h1>
           </div>
@@ -58,14 +59,17 @@ export default function PostContent(props: { postId: string }) {
           </div>
         </div>
       </section>
-      <section className="mt-4 border border-gray-200 px-10 dark:border-neutral-700">
+      <section className="flex w-full border border-gray-200 px-10 py-4 dark:border-neutral-700">
+        <CommentBox />
+      </section>
+      <section className="mt-4 border border-gray-200 px-10  dark:border-neutral-700">
         <div className="py-4">
           <p className="text-xs text-gray-700 dark:text-gray-300">
             {postData.comments.length} comment(s)
           </p>
         </div>
         {postData.comments.map((comment: any, index: any) => (
-          <CommentBox comment={comment} />
+          <Comment comment={comment} />
         ))}
       </section>
     </main>

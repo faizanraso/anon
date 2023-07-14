@@ -72,7 +72,7 @@ export default function UserInfo(props: { session: any }) {
           </Link>
           <div className="flex flex-row gap-x-3">
             <Link href={"/login"}>
-              <span className="block items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-black transition duration-200 hover:border-black hover:bg-white hover:text-black focus:outline-none focus:ring dark:border-gray-500 dark:bg-black dark:text-white dark:hover:border-gray-300 sm:flex">
+              <span className="block items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-black transition duration-200 hover:border-black hover:bg-white hover:text-black focus:outline-none focus:ring dark:border-neutral-700 dark:bg-black dark:text-white dark:hover:border-gray-300 sm:flex">
                 Log In
               </span>
             </Link>
