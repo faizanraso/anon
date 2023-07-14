@@ -60,7 +60,7 @@ export default function PostContent(props: { postId: string }) {
         </div>
       </section>
       <section className="flex w-full border border-gray-200 px-10 py-4 dark:border-neutral-700">
-        <CommentBox />
+        <CommentBox postId={props.postId} />
       </section>
       <section className="mt-4 border border-gray-200 px-10  dark:border-neutral-700">
         <div className="py-4">
