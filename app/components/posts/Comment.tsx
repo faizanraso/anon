@@ -33,11 +33,11 @@ export default function Comment(props: { comment: any }) {
             @{props.comment.username}
           </Link>
         </p>
-        <p className="text-sm">{props.comment.comment}</p>
-        <div className="flex flex-row items-center gap-x-1 pt-3">
+        <p className="text-xs">{props.comment.comment}</p>
+        <div className="flex flex-row items-center gap-x-1">
           <svg
-            width="12px"
-            height="12px"
+            width="10px"
+            height="10px"
             stroke-width="1.5"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"

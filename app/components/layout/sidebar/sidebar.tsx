@@ -22,7 +22,7 @@ export default async function Sidebar() {
             <div className="flex flex-col items-center justify-center py-4">
               <PostModal sessionStatus={session} />
             </div>
-            <div className="mx-auto flex w-10/12 border-0 border-b border-gray-200 dark:border-gray-500"></div>
+            <div className="mx-auto flex w-10/12 border-0 border-b border-gray-200 dark:border-neutral-700"></div>
           </>
         ) : null}
 
