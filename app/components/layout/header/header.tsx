@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import UserInfo from "./UserInfo";
+import UserInfo from "./userinfo";
 
 export default async function Header() {
   const session = await getServerSession(authOptions);

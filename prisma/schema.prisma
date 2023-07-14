@@ -42,7 +42,7 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @unique @default(cuid())
   username      String?   @unique
   email         String?   @unique
   name          String?
@@ -83,15 +83,15 @@ model Post {
 }
 
 model Comment {
-  user          User?    @relation(fields: [userId, username, school], references: [id, username, school], onDelete: Cascade)
+  user          User     @relation(fields: [userId, username, school], references: [id, username, school], onDelete: Cascade)
   username      String
   school        String
   comment_id    String   @id @default(cuid())
-  userId        String?
+  userId        String
   comment       String   @db.Text
   creation_time DateTime @default(now())
-  Post          Post?    @relation(fields: [post_id], references: [post_id])
-  post_id       String?
+  Post          Post     @relation(fields: [post_id], references: [post_id])
+  post_id       String
 
   @@index([userId, username, school])
   @@index([post_id])

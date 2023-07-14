@@ -1,10 +1,37 @@
+"use client";
+
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default function CommentBox() {
+export default function CommentBox(props: { postId: string }) {
   const [comment, setComment] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { data: session, status } = useSession();
+
+  async function postComment() {
+    setIsLoading(true);
+    const postId = props.postId;
+
+    const body = {
+      comment,
+      postId,
+    };
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    };
+
+    const response = await fetch("/api/postComment", requestOptions);
+
+    if (!response.ok) {
+      return;
+    }
+
+    setIsLoading(false);
+  }
 
   return (
     <div className="flex w-full flex-row justify-center">
@@ -19,7 +46,10 @@ export default function CommentBox() {
           <div className="flex w-full justify-end">
             {" "}
             {comment.length >= 1 ? (
-              <button className="inline-block rounded border border-blue-500 bg-blue-500 px-5 py-2 text-xs font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400">
+              <button
+                onClick={postComment}
+                className="inline-block rounded border border-blue-500 bg-blue-500 px-5 py-2 text-xs font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400"
+              >
                 Post
               </button>
             ) : (
