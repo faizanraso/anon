@@ -41,7 +41,7 @@ export default function PostModal(props: { sessionStatus: any }) {
           </Dialog.Trigger>
           <Dialog.Portal>
             <Dialog.Overlay className="fixed inset-0" />
-            <Dialog.Content className="fixed left-[50%] top-[50%] max-h-[85vh] w-[90vw] max-w-[600px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] border border-neutral-700 bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none dark:bg-black">
+            <Dialog.Content className="fixed left-[50%] top-[50%] max-h-[85vh] w-[90vw] max-w-[600px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none dark:border dark:border-neutral-700 dark:bg-black">
               <Dialog.Title className="my-5 text-[17px] font-medium">
                 Write a Post 💭
               </Dialog.Title>
@@ -52,7 +52,7 @@ export default function PostModal(props: { sessionStatus: any }) {
               >
                 <fieldset className="mb-[15px] flex items-center gap-5">
                   <input
-                    className="w-full rounded-lg border border-gray-600 p-3 text-sm bg-transparent"
+                    className="w-full rounded-lg border border-gray-600 bg-transparent p-3 text-sm"
                     id="title"
                     placeholder="Post Title"
                     type="text"
@@ -80,7 +80,7 @@ export default function PostModal(props: { sessionStatus: any }) {
                   <p className="text-xs text-gray-500">{postLength}/2500</p>
                   <button
                     type="submit"
-                    className="inline-block rounded border border-black bg-black px-12 py-3 text-sm font-medium text-white duration-100 hover:bg-black hover:bg-transparent hover:text-black focus:outline-none focus:ring active:text-white dark:border-neutral-700 dark:hover:bg-white"
+                    className="inline-flex items-center justify-center rounded-[4px] border border-black px-5 py-2 font-medium transition duration-100 hover:scale-105 focus:shadow-[0_0_0_2px] focus:outline-none dark:border-neutral-700"
                   >
                     Post
                   </button>
