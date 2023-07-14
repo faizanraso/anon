@@ -11,3 +11,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+::selection {
+  background: #85bdea;
+}

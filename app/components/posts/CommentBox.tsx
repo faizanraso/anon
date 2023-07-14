@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -5,6 +7,10 @@ import Link from "next/link";
 export default function CommentBox() {
   const [comment, setComment] = useState<string>("");
   const { data: session, status } = useSession();
+
+  async function postComment(){
+    
+  }
 
   return (
     <div className="flex w-full flex-row justify-center">
