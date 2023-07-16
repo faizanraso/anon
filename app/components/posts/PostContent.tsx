@@ -4,33 +4,28 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Comment from "./Comment";
 import CommentBox from "./CommentBox";
+import useSWR from "swr";
 
 export default function PostContent(props: { postId: string }) {
   const [postData, setPostData] = useState<any>();
 
+  const fetcher = (url: RequestInfo | URL) =>
+    fetch(url).then((res) => res.json());
+
+  const { data, error, isLoading } = useSWR(
+    "/api/getSelectedPost?postId=" + props.postId,
+    fetcher
+  );
+
   useEffect(() => {
-    async function getSelectedPost() {
-      const requestOptions = {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      };
-
-      const response = await fetch(
-        "/api/getSelectedPost?postId=" + props.postId,
-        requestOptions
-      );
-      const data = await response.json();
-
-      if (!response.ok) {
-        return;
-      }
-
-      setPostData(data);
-    }
-    getSelectedPost();
-  }, []);
+    setPostData(data);
+  }, [data]);
 
   if (!postData) return null;
+
+  if (isLoading) return null;
+
+  if (error) return "error";
 
   return (
     <main>
