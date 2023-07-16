@@ -5,17 +5,14 @@ import useSWR from "swr";
 
 import InfoModal from "@/app/components/modals/InfoModal";
 import PostCard from "@/app/components/home/postcard";
+import { fetcher } from "@/app/utils/fetcher";
 
 export default function FilteredHome({
   params,
 }: {
   params: { filterId: string };
 }) {
-  
   const [posts, setPosts] = useState<any[]>([]);
-
-  const fetcher = (url: RequestInfo | URL) =>
-    fetch(url).then((res) => res.json());
 
   const { data, error, isLoading } = useSWR(
     "/api/getFilteredPosts?filterId=" + params.filterId,

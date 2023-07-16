@@ -5,12 +5,11 @@ import useSWR from "swr";
 
 import InfoModal from "../components/modals/InfoModal";
 import PostCard from "../components/home/postcard";
+import { fetcher } from "@/app/utils/fetcher";
 
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
 
-  const fetcher = (url: RequestInfo | URL) =>
-    fetch(url).then((res) => res.json());
   const { data, error, isLoading } = useSWR("/api/getAllPosts", fetcher);
 
   useEffect(() => {
