@@ -51,3 +51,17 @@ export const programs = [
   "Mathematics and Statistics",
   "Other",
 ];
+
+export const schoolFilters = schools.map((school, index) => {
+  return {
+    name: school,
+    filterId: index + 1,
+  };
+});
+
+export const programFilters = programs.map((program, index) => {
+  return {
+    name: program,
+    filterId: index + schoolFilters.length + 1,
+  };
+});
