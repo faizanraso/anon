@@ -21,10 +21,7 @@ export default function InfoModal() {
         },
       };
 
-      const response = await fetch(
-        "http://localhost:3000/api/info",
-        requestOptions
-      );
+      const response = await fetch("/api/info", requestOptions);
 
       if (!response.ok) {
         return;
