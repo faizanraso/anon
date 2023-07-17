@@ -2,7 +2,7 @@ import React from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-import { programs, schools } from "@/app/utils/constants";
+import { programFilters, schoolFilters } from "@/app/utils/constants";
 import Dropdown from "../../icons/Dropdown";
 import PostModal from "../../modals/PostModal";
 import MobileMenu from "./MobileMenu";
@@ -42,13 +42,13 @@ export default async function Sidebar() {
               aria-label="Schools Nav"
               className="mt-2 flex flex-col space-y-1 px-4"
             >
-              {schools.map((school, index) => (
+              {schoolFilters.map((school, index) => (
                 <a
                   key={index}
-                  href=""
+                  href={"/home/" + school.filterId}
                   className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
                 >
-                  {school}
+                  {school.name}
                 </a>
               ))}
             </nav>
@@ -66,13 +66,13 @@ export default async function Sidebar() {
               aria-label="Programs Nav"
               className="mt-2 flex flex-col space-y-1 px-4"
             >
-              {programs.map((program, index) => (
+              {programFilters.map((program, index) => (
                 <a
                   key={index}
-                  href=""
-                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500  hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
+                  href={"/home/" + program.filterId}
+                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
                 >
-                  {program}
+                  {program.name}
                 </a>
               ))}
             </nav>

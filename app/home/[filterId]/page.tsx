@@ -15,7 +15,7 @@ export default function FilteredHome({
   const [posts, setPosts] = useState<any[]>([]);
 
   const { data, error, isLoading } = useSWR(
-    "/api/getFilteredPosts?filterId=" + params.filterId,
+    "/api/getFIlteredPosts?filterId=" + params.filterId,
     fetcher
   );
 
