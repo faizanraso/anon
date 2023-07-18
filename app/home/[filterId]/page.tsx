@@ -3,14 +3,21 @@
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
-import InfoModal from "../components/modals/InfoModal";
-import PostCard from "../components/home/postcard";
+import InfoModal from "@/app/components/modals/InfoModal";
+import PostCard from "@/app/components/home/postcard";
 import { fetcher } from "@/app/utils/fetcher";
 
-export default function Home() {
+export default function FilteredHome({
+  params,
+}: {
+  params: { filterId: string };
+}) {
   const [posts, setPosts] = useState<any[]>([]);
 
-  const { data, error, isLoading } = useSWR("/api/getAllPosts", fetcher);
+  const { data, error, isLoading } = useSWR(
+    "/api/getFIlteredPosts?filterId=" + params.filterId,
+    fetcher
+  );
 
   useEffect(() => {
     setPosts(data);

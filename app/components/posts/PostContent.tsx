@@ -4,12 +4,10 @@ import Link from "next/link";
 import React from "react";
 import Comments from "./Comments";
 import CommentBox from "./CommentBox";
+import { fetcher } from "@/app/utils/fetcher";
 import useSWR from "swr";
 
 export default function PostContent(props: { postId: string }) {
-  const fetcher = (url: RequestInfo | URL) =>
-    fetch(url).then((res) => res.json());
-
   const { data, error, isLoading } = useSWR(
     "/api/getSelectedPost?postId=" + props.postId,
     fetcher

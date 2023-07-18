@@ -9,7 +9,9 @@ export default function CommentBox(props: { postId: string }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { data: session, status } = useSession();
 
-  async function postComment() {
+  async function postComment(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
     setIsLoading(true);
     const postId = props.postId;
 
@@ -47,7 +49,7 @@ export default function CommentBox(props: { postId: string }) {
             {" "}
             {comment.length >= 1 ? (
               <button
-                onClick={postComment}
+                onClick={(e) => postComment(e)}
                 className="inline-block rounded border border-blue-500 bg-blue-500 px-5 py-2 text-xs font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400"
               >
                 Post

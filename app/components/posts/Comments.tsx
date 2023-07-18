@@ -1,14 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { fetcher } from "@/app/utils/fetcher";
 import useSWR from "swr";
 import Link from "next/link";
 
 export default function Comments(props: { postId: string }) {
   const [comments, setComments] = useState<any>();
-
-  const fetcher = (url: RequestInfo | URL) =>
-    fetch(url).then((res) => res.json());
 
   const { data, error, isLoading } = useSWR(
     "/api/getComments?postId=" + props.postId,

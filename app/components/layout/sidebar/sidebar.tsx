@@ -1,14 +1,39 @@
-import React from "react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+"use client";
 
-import { programs, schools } from "@/app/utils/constants";
-import Dropdown from "../../icons/Dropdown";
+import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
+
+import { programFilters, schoolFilters } from "@/app/utils/constants";
 import PostModal from "../../modals/PostModal";
 import MobileMenu from "./MobileMenu";
+import SchoolDropdown from "./SchoolDropdown";
+import ProgramDropdown from "./ProgramDropdown";
 
-export default async function Sidebar() {
-  const session = await getServerSession(authOptions);
+export default function Sidebar() {
+  const pathname = usePathname();
+  const [filterType, setFilterType] = useState<string>("");
+  const [filterId, setFilterId] = useState<string>("");
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    const paths = pathname.split("/");
+    if (paths.length > 2) {
+      const filter = paths[2];
+
+      if (schoolFilters.some((school) => school.filterId === filter)) {
+        setFilterType("school");
+        setFilterId(paths[2]);
+      } else if (
+        programFilters.some((program) => program.filterId === filter)
+      ) {
+        setFilterType("program");
+        setFilterId(paths[2]);
+      } else {
+        null;
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -29,54 +54,16 @@ export default async function Sidebar() {
         <nav aria-label="Side Nav" className="flex flex-col space-y-1 pt-2">
           <a
             href="/home"
-            className="block rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 dark:bg-black dark:text-gray-200"
+            className={`block rounded-lg px-4 py-2 text-sm font-medium ${
+              filterType === ""
+                ? "font-semibold text-gray-700"
+                : "text-gray-500"
+            } dark:bg-black dark:text-gray-200`}
           >
             Home
           </a>
-          <details className="group [&_summary::-webkit-details-marker]:hidden">
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:text-gray-700  dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200">
-              <span className="text-sm font-semibold"> Schools </span>
-              <Dropdown />
-            </summary>
-            <nav
-              aria-label="Schools Nav"
-              className="mt-2 flex flex-col space-y-1 px-4"
-            >
-              {schools.map((school, index) => (
-                <a
-                  key={index}
-                  href=""
-                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
-                >
-                  {school}
-                </a>
-              ))}
-            </nav>
-          </details>
-          <details
-            open
-            className="group [&_summary::-webkit-details-marker]:hidden"
-          >
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200">
-              <span className="text-sm font-semibold"> Programs </span>
-              <Dropdown />
-            </summary>
-
-            <nav
-              aria-label="Programs Nav"
-              className="mt-2 flex flex-col space-y-1 px-4"
-            >
-              {programs.map((program, index) => (
-                <a
-                  key={index}
-                  href=""
-                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500  hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
-                >
-                  {program}
-                </a>
-              ))}
-            </nav>
-          </details>
+          <SchoolDropdown filterId={filterId} filterType={filterType} />
+          <ProgramDropdown filterId={filterId} filterType={filterType} />
         </nav>
       </div>
     </>

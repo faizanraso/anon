@@ -51,3 +51,13 @@ export const programs = [
   "Mathematics and Statistics",
   "Other",
 ];
+
+export const schoolFilters = schools.map((school) => ({
+  name: school,
+  filterId: school.toLowerCase().replace(/[^a-z0-9]/g, ""),
+}));
+
+export const programFilters = programs.map((program) => ({
+  name: program,
+  filterId: program.toLowerCase().replace(/[^a-z0-9]/g, ""),
+}));
