@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import { programFilters, schoolFilters } from "@/app/utils/constants";
-import Dropdown from "../../icons/Dropdown";
 import PostModal from "../../modals/PostModal";
 import MobileMenu from "./MobileMenu";
 import SchoolDropdown from "./SchoolDropdown";
+import ProgramDropdown from "./ProgramDropdown";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -20,12 +20,15 @@ export default function Sidebar() {
     const paths = pathname.split("/");
     if (paths.length > 2) {
       const filter = paths[2];
-      if (schoolFilters.filter((school) => school.name === filter)) {
+
+      if (schoolFilters.some((school) => school.filterId === filter)) {
         setFilterType("school");
         setFilterId(paths[2]);
-      } else if (programFilters.filter((program) => program.name === filter)) {
+      } else if (
+        programFilters.some((program) => program.filterId === filter)
+      ) {
         setFilterType("program");
-        setFilterId(paths[1]);
+        setFilterId(paths[2]);
       } else {
         null;
       }
@@ -52,7 +55,7 @@ export default function Sidebar() {
           <a
             href="/home"
             className={`block rounded-lg px-4 py-2 text-sm font-medium ${
-              filterType === "none"
+              filterType === ""
                 ? "font-semibold text-gray-700"
                 : "text-gray-500"
             } dark:bg-black dark:text-gray-200`}
@@ -60,30 +63,7 @@ export default function Sidebar() {
             Home
           </a>
           <SchoolDropdown filterId={filterId} filterType={filterType} />
-          <details
-            open
-            className="group [&_summary::-webkit-details-marker]:hidden"
-          >
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200">
-              <span className="text-sm font-semibold"> Programs </span>
-              <Dropdown />
-            </summary>
-
-            <nav
-              aria-label="Programs Nav"
-              className="mt-2 flex flex-col space-y-1 px-4"
-            >
-              {programFilters.map((program, index) => (
-                <a
-                  key={index}
-                  href={"/home/" + program.filterId}
-                  className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
-                >
-                  {program.name}
-                </a>
-              ))}
-            </nav>
-          </details>
+          <ProgramDropdown filterId={filterId} filterType={filterType} />
         </nav>
       </div>
     </>
