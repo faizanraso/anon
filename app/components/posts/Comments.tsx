@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { fetcher } from "@/app/utils/fetcher";
 import useSWR from "swr";
 import Link from "next/link";
+import compareDates from "@/app/utils/compareDates";
 
 export default function Comments(props: { postId: string }) {
   const [comments, setComments] = useState<any>();
@@ -21,18 +22,6 @@ export default function Comments(props: { postId: string }) {
 
   if (error) return "error";
 
-  function compareDates(creation_time: string) {
-    const postDate = new Date(creation_time.slice(0, 10));
-
-    return (
-      postDate.toLocaleString("default", { month: "long" }) +
-      " " +
-      postDate.getDate() +
-      ", " +
-      postDate.getFullYear()
-    );
-  }
-
   return (
     <>
       {comments
@@ -46,7 +35,7 @@ export default function Comments(props: { postId: string }) {
               },
               index: any
             ) => (
-              <div className="">
+              <div>
                 <div className="flex flex-col gap-y-4 border-t border-gray-200 py-4 dark:border-neutral-700">
                   <p className="text-xs">
                     {" "}
