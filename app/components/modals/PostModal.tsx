@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import Link from "next/link";
 
 export default function PostModal(props: { sessionStatus: any }) {
   const [open, setOpen] = useState<boolean>(false);
@@ -113,7 +114,13 @@ export default function PostModal(props: { sessionStatus: any }) {
             </Dialog.Content>
           </Dialog.Portal>
         </Dialog.Root>
-      ) : null}
+      ) : (
+        <Link href={"/login"}>
+          <button className="inline-block rounded border border-blue-500 px-12 py-3 text-sm font-semibold text-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring active:text-white">
+            Write a Post 💭
+          </button>
+        </Link>
+      )}
     </>
   );
 }
