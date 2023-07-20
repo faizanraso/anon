@@ -24,6 +24,11 @@ export default function Comments(props: { postId: string }) {
 
   return (
     <>
+      <div className="py-4">
+        <p className="text-xs text-gray-700 dark:text-gray-300">
+          {comments?.length} comment(s)
+        </p>
+      </div>
       {comments
         ? comments.map(
             (

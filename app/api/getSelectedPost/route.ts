@@ -8,7 +8,6 @@ export async function GET(req: Request) {
 
     const postData = await prisma.post.findFirst({
       where: { post_id: postId! },
-      include: { comments: true },
     });
 
     return NextResponse.json(postData);

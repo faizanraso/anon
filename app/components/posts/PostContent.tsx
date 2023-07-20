@@ -50,11 +50,6 @@ export default function PostContent(props: { postId: string }) {
         <CommentBox postId={data.post_id} />
       </section>
       <section className="mt-4 border border-gray-200 px-10  dark:border-neutral-700">
-        <div className="py-4">
-          <p className="text-xs text-gray-700 dark:text-gray-300">
-            {data.comments.length} comment(s)
-          </p>
-        </div>
         <Comments postId={data.post_id} />
       </section>
     </main>
