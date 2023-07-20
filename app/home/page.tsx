@@ -6,6 +6,7 @@ import useSWR from "swr";
 import InfoModal from "../components/modals/InfoModal";
 import PostCard from "../components/home/postcard";
 import { fetcher } from "@/app/utils/fetcher";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -21,12 +22,22 @@ export default function Home() {
   }
 
   if (error) {
-    return "error";
+    toast.error("Looks like something went wrong.", {
+      className: "text-xs",
+      duration: 3000,
+    });
   }
+
+  // toast.promise(saveSettings(settings), {
+  //   loading: "Saving...",
+  //   success: <b>Settings saved!</b>,
+  //   error: <b>Could not save.</b>,
+  // });
 
   return (
     <>
       <InfoModal />
+      <Toaster position="top-right" reverseOrder={false} />
       <main className="w-full p-3 sm:ml-60">
         <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {posts?.map((post) => (
