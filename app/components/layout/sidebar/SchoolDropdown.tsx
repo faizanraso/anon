@@ -22,7 +22,7 @@ export default function SchoolDropdown(props: {
           >
             {schoolFilters.map((school, index) => (
               <a
-                key={index}
+                key={school.filterId}
                 href={"/home/" + school.filterId}
                 className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
               >
@@ -46,7 +46,7 @@ export default function SchoolDropdown(props: {
           >
             {schoolFilters.map((school, index) => (
               <a
-                key={index}
+                key={school.filterId}
                 href={"/home/" + school.filterId}
                 className={`block rounded-lg px-4 py-2 text-sm font-medium ${
                   school.filterId === props.filterId

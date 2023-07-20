@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function CommentBox(props: { postId: string }) {
   const [comment, setComment] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { data: session, status } = useSession();
 
   async function postComment(
@@ -14,12 +15,16 @@ export default function CommentBox(props: { postId: string }) {
   ) {
     e.preventDefault();
 
+    setIsLoading(true);
+
     const postId = props.postId;
 
     const body = {
       comment,
       postId,
     };
+
+    setComment("");
 
     const requestOptions = {
       method: "POST",
@@ -30,9 +35,11 @@ export default function CommentBox(props: { postId: string }) {
     const response = await fetch("/api/postComment", requestOptions);
 
     if (!response.ok) {
+      setIsLoading(false);
       return;
     }
 
+    setIsLoading(false);
   }
 
   return (
@@ -42,6 +49,7 @@ export default function CommentBox(props: { postId: string }) {
         {status === "authenticated" ? (
           <form className="w-full">
             <textarea
+              value={comment}
               className="w-full resize-none rounded border bg-transparent px-3 py-1 text-sm transition-all duration-100 ease-linear dark:border-neutral-700"
               placeholder="Write your comment here...."
               rows={4}
@@ -49,23 +57,23 @@ export default function CommentBox(props: { postId: string }) {
             />
             <div className="flex w-full justify-end">
               {" "}
-              {comment.length >= 1 ? (
+              {comment.length < 1 || isLoading ? (
                 <button
-                  onClick={(e) =>
-                    toast.promise(postComment(e), {
-                      loading: "Saving...",
-                      success: <b>Settings saved!</b>,
-                      error: <b>Could not save.</b>,
-                    })
-                  }
-                  className="inline-block rounded border border-blue-500 bg-blue-500 px-5 py-2 text-xs font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400"
+                  className="inline-block rounded border border-blue-200 bg-blue-200 px-5 py-2 text-xs font-medium text-white focus:outline-none dark:border-blue-900 dark:bg-blue-900 dark:text-gray-500"
+                  disabled
                 >
                   Post
                 </button>
               ) : (
                 <button
-                  className="inline-block rounded border border-blue-200 bg-blue-200 px-5 py-2 text-xs font-medium text-white focus:outline-none dark:border-blue-900 dark:bg-blue-900 dark:text-gray-500"
-                  disabled
+                  onClick={(e) =>
+                    toast.promise(postComment(e), {
+                      loading: <p className="text-sm">Posting...</p>,
+                      success: <b className="text-sm">Comment posted</b>,
+                      error: <b className="text-sm">Could not post.</b>,
+                    })
+                  }
+                  className="inline-block rounded border border-blue-500 bg-blue-500 px-5 py-2 text-xs font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400"
                 >
                   Post
                 </button>

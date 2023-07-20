@@ -112,7 +112,7 @@ export default function InfoModal() {
                   Select your school
                 </option>
                 {schools.map((val, index) => (
-                  <option key={index}>{val}</option>
+                  <option key={val}>{val}</option>
                 ))}
               </select>
             </fieldset>
@@ -134,7 +134,7 @@ export default function InfoModal() {
                   Select your program
                 </option>
                 {programs.map((val, index) => (
-                  <option key={index}>{val}</option>
+                  <option key={val}>{val}</option>
                 ))}
               </select>
             </fieldset>
