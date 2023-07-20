@@ -40,7 +40,7 @@ export default function Comments(props: { postId: string }) {
               },
               index: any
             ) => (
-              <div>
+              <div key={index}>
                 <div className="flex flex-col gap-y-4 border-t border-gray-200 py-4 dark:border-neutral-700">
                   <p className="text-xs">
                     {" "}
