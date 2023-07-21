@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { mutate } from "swr";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
@@ -35,10 +36,12 @@ export default function CommentBox(props: { postId: string }) {
     const response = await fetch("/api/postComment", requestOptions);
 
     if (!response.ok) {
+      toast.error("Woah, something went wrong", { className: "text-sm" });
       setIsLoading(false);
       return;
     }
 
+    mutate("/api/getComments?postId=" + props.postId);
     setIsLoading(false);
   }
 

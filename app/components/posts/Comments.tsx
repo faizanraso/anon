@@ -31,15 +31,12 @@ export default function Comments(props: { postId: string }) {
       </div>
       {comments
         ? comments.map(
-            (
-              comment: {
-                school: string;
-                username: string;
-                comment: string;
-                creation_time: string;
-              },
-              index: any
-            ) => (
+            (comment: {
+              school: string;
+              username: string;
+              comment: string;
+              creation_time: string;
+            }) => (
               <div key={comment.username + comment.creation_time}>
                 <div className="flex flex-col gap-y-4 border-t border-gray-200 py-4 dark:border-neutral-700">
                   <p className="text-xs">
