@@ -46,13 +46,13 @@ export default function InfoModal() {
     const response = await fetch("/api/addUserInfo", requestOptions);
 
     if (!response.ok) {
-      toast.error("Something went wrong", { className: "text-sm" });
+      toast.error("Something went wrong", { className: "text-sm", duration: 3000 });
       return;
     }
 
     setOpen(false);
     setIsUpdating(false);
-    toast.success("Information updated", { className: "text-sm" });
+    toast.success("Information updated", { className: "text-sm", duration: 3000 });
   }
 
   return (

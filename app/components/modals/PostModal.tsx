@@ -35,7 +35,7 @@ export default function PostModal(props: { sessionStatus: any }) {
     const response = await fetch("/api/submitPost", requestOptions);
 
     if (!response.ok) {
-      toast.error("Something went wrong", { className: "text-sm" });
+      toast.error("Something went wrong", { className: "text-sm", duration: 3000 });
       return;
     }
 

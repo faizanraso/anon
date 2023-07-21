@@ -24,6 +24,7 @@ export default function Home() {
   if (error) {
     toast.error("Looks like something went wrong.", {
       className: "text-sm",
+      duration: 3000,
     });
   }
 

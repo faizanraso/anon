@@ -36,7 +36,7 @@ export default function CommentBox(props: { postId: string }) {
     const response = await fetch("/api/postComment", requestOptions);
 
     if (!response.ok) {
-      toast.error("Woah, something went wrong", { className: "text-sm" });
+      toast.error("Woah, something went wrong", { className: "text-sm", duration: 3000 });
       setIsLoading(false);
       return;
     }
