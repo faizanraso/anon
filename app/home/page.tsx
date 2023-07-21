@@ -23,7 +23,7 @@ export default function Home() {
 
   if (error) {
     toast.error("Looks like something went wrong.", {
-      className: "text-sm",
+      className: "text-sm dark:bg-neutral-800 dark:text-white",
       duration: 3000,
     });
   }

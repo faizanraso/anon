@@ -36,7 +36,10 @@ export default function CommentBox(props: { postId: string }) {
     const response = await fetch("/api/postComment", requestOptions);
 
     if (!response.ok) {
-      toast.error("Woah, something went wrong", { className: "text-sm", duration: 3000 });
+      toast.error("Woah, something went wrong", {
+        className: "text-sm dark:bg-neutral-800 dark:text-white",
+        duration: 3000,
+      });
       setIsLoading(false);
       return;
     }
@@ -70,11 +73,18 @@ export default function CommentBox(props: { postId: string }) {
               ) : (
                 <button
                   onClick={(e) =>
-                    toast.promise(postComment(e), {
-                      loading: <p className="text-sm">Posting...</p>,
-                      success: <b className="text-sm">Comment posted</b>,
-                      error: <b className="text-sm">Could not post.</b>,
-                    })
+                    toast.promise(
+                      postComment(e),
+                      {
+                        loading: <p className="text-sm">Posting...</p>,
+                        success: <b className="text-sm">Comment posted</b>,
+                        error: <b className="text-sm">Could not post.</b>,
+                      },
+                      {
+                        className: "text-sm dark:bg-neutral-800 dark:text-white",
+                        duration: 3000,
+                      }
+                    )
                   }
                   className="inline-block rounded border border-blue-500 bg-blue-500 px-5 py-2 text-xs font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400"
                 >

@@ -18,7 +18,7 @@ export default function UserInfo(props: { session: any }) {
         <div className="flex items-center justify-center gap-x-3">
           <span className="group flex shrink-0 items-center rounded-lg transition">
             <span className="sr-only">Menu</span>
-            <div className=" flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 object-cover text-center ">
+            <div className=" flex h-8 w-8 items-center justify-center rounded-full bg-black object-cover text-center ">
               <span className="text-sm font-semibold text-white">
                 {session?.user?.name?.charAt(0)}
               </span>
