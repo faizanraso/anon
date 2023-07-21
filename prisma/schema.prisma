@@ -90,7 +90,7 @@ model Comment {
   userId        String
   comment       String   @db.Text
   creation_time DateTime @default(now())
-  Post          Post     @relation(fields: [post_id], references: [post_id])
+  Post          Post     @relation(fields: [post_id], references: [post_id], onDelete: Cascade)
   post_id       String
 
   @@index([userId, username, school])

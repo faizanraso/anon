@@ -25,7 +25,7 @@ export default function ProgramDropdown(props: {
           >
             {programFilters.map((program, index) => (
               <a
-                key={index}
+                key={program.filterId}
                 href={"/home/" + program.filterId}
                 className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
               >
@@ -46,7 +46,7 @@ export default function ProgramDropdown(props: {
           >
             {programFilters.map((program, index) => (
               <a
-                key={index}
+                key={program.filterId}
                 href={"/home/" + program.filterId}
                 className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-black dark:hover:text-gray-200"
               >
@@ -70,7 +70,7 @@ export default function ProgramDropdown(props: {
           >
             {programFilters.map((program, index) => (
               <a
-                key={index}
+                key={program.filterId}
                 href={"/home/" + program.filterId}
                 className={`block rounded-lg px-4 py-2 text-sm font-medium ${
                   program.filterId === props.filterId

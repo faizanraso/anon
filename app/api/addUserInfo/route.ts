@@ -19,7 +19,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         program: program,
       },
     });
-    NextResponse.json(userUpdate);
+    return NextResponse.json({ message: "complete" });
   } catch (e) {
     console.log(e);
   }
