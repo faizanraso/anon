@@ -22,21 +22,21 @@ export default function PostContent(props: { postId: string }) {
   return (
     <main>
       <section className="py-4">
-        <div className="border border-gray-200 px-10 py-5 dark:border-neutral-700">
+        <div className="border border-neutral-200 px-10 py-5 dark:border-neutral-700">
           <div>
             <h1 className="text-3xl font-semibold">{data.title}</h1>
           </div>
-          <div className="flex flex-row gap-2 py-5 text-gray-500 dark:text-gray-400">
+          <div className="flex flex-row gap-2 py-5 text-neutral-500 dark:text-neutral-400">
             <p>
-              <span className="text-sm transition duration-100 hover:text-gray-600 hover:underline dark:hover:text-gray-300">
+              <span className="text-sm transition duration-100 hover:text-neutral-600 hover:underline dark:hover:text-neutral-300">
                 <Link href="/">{data.school}</Link>
               </span>{" "}
               -{" "}
-              <span className="text-sm transition duration-100 hover:text-gray-600 hover:underline dark:hover:text-gray-300">
+              <span className="text-sm transition duration-100 hover:text-neutral-600 hover:underline dark:hover:text-neutral-300">
                 <Link href={"/"}>{data.program}</Link>
               </span>{" "}
               -{" "}
-              <span className="text-sm transition duration-100 hover:text-gray-600 hover:underline dark:hover:text-gray-300">
+              <span className="text-sm transition duration-100 hover:text-neutral-600 hover:underline dark:hover:text-neutral-300">
                 <Link href={"/"}>{data.username}</Link>
               </span>
             </p>
@@ -46,10 +46,10 @@ export default function PostContent(props: { postId: string }) {
           </div>
         </div>
       </section>
-      <section className="flex w-full border border-gray-200 px-10 py-4 dark:border-neutral-700">
+      <section className="flex w-full border border-neutral-200 px-10 py-4 dark:border-neutral-700">
         <CommentBox postId={data.post_id} />
       </section>
-      <section className="mt-4 border border-gray-200 px-10  dark:border-neutral-700">
+      <section className="mt-4 border border-neutral-200 px-10  dark:border-neutral-700">
         <Comments postId={data.post_id} />
       </section>
     </main>

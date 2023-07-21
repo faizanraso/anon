@@ -40,21 +40,21 @@ export default function Sidebar() {
       <MobileMenu />
       <div
         id="sidemenu"
-        className="fixed inset-0 top-0 hidden w-60 overflow-y-auto bg-gray-50 pt-16 dark:bg-black sm:block"
+        className="fixed inset-0 top-0 hidden w-60 overflow-y-auto bg-neutral-50 pt-16 dark:bg-black sm:block"
       >
         <div className="flex flex-col items-center justify-center py-4">
           <PostModal sessionStatus={session} />
         </div>
-        <div className="mx-auto flex w-10/12 border-0 border-b border-gray-200 dark:border-neutral-700"></div>
+        <div className="mx-auto flex w-10/12 border-0 border-b border-neutral-200 dark:border-neutral-700"></div>
 
         <nav aria-label="Side Nav" className="flex flex-col space-y-1 pt-2">
           <a
             href="/home"
             className={`block rounded-lg px-4 py-2 text-sm font-medium ${
               filterType === ""
-                ? "font-semibold text-gray-700"
-                : "text-gray-500"
-            } dark:bg-black dark:text-gray-200`}
+                ? "font-semibold text-neutral-700"
+                : "text-neutral-500"
+            } dark:bg-black dark:text-neutral-200`}
           >
             Home
           </a>

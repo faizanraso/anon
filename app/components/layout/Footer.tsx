@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer
       aria-label="Site Footer"
-      className="border-t border-gray-200 bg-white dark:border-zinc-800 dark:bg-black"
+      className="border-t border-neutral-200 bg-white dark:border-zinc-800 dark:bg-black"
     >
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center sm:justify-between">
@@ -33,10 +33,10 @@ export default function Footer() {
                 strokeLinejoin="round"
               ></path>
             </svg>
-            <p className="px-2 text-center text-xs text-gray-500 lg:mt-0 lg:text-right">
+            <p className="px-2 text-center text-xs text-neutral-500 lg:mt-0 lg:text-right">
               Built by{" "}
               <a
-                className="underline underline-offset-2 hover:text-gray-600 dark:hover:text-gray-400"
+                className="underline underline-offset-2 hover:text-neutral-600 dark:hover:text-neutral-400"
                 href="www.github.com/faizanraso/anon"
               >
                 Faizan Rasool

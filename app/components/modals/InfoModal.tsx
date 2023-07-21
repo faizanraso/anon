@@ -144,7 +144,7 @@ export default function InfoModal() {
                 <button
                   type="submit"
                   disabled
-                  className="inline-flex items-center justify-center rounded-[4px] border border-gray-400 px-5 py-2 font-medium text-gray-400 dark:border-neutral-700 dark:text-gray-500"
+                  className="inline-flex items-center justify-center rounded-[4px] border border-neutral-400 px-5 py-2 font-medium text-neutral-400 dark:border-neutral-700 dark:text-neutral-500"
                 >
                   Save changes
                 </button>
