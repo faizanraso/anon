@@ -35,7 +35,10 @@ export default function PostModal(props: { sessionStatus: any }) {
     const response = await fetch("/api/submitPost", requestOptions);
 
     if (!response.ok) {
-      toast.error("Something went wrong", { className: "text-sm", duration: 3000 });
+      toast.error("Something went wrong", {
+        className: "text-sm dark:bg-neutral-800 dark:text-white",
+        duration: 3000,
+      });
       return;
     }
 
@@ -49,7 +52,7 @@ export default function PostModal(props: { sessionStatus: any }) {
       {props.sessionStatus ? (
         <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger asChild>
-            <button className="inline-block rounded border border-blue-500 px-12 py-3 text-sm font-semibold text-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring active:text-white">
+            <button className="inline-block rounded border border-black px-12 py-3 text-sm font-semibold text-black hover:bg-black hover:text-white focus:outline-none focus:ring active:text-white dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
               Write a Post 💭
             </button>
           </Dialog.Trigger>
@@ -61,11 +64,18 @@ export default function PostModal(props: { sessionStatus: any }) {
               </Dialog.Title>
               <form
                 onSubmit={(e) => {
-                  toast.promise(submitPost(e), {
-                    loading: <p className="text-sm">Posting...</p>,
-                    success: <b className="text-sm">Post created</b>,
-                    error: <b className="text-sm">Could not post.</b>,
-                  });
+                  toast.promise(
+                    submitPost(e),
+                    {
+                      loading: <p className="text-sm">Posting...</p>,
+                      success: <b className="text-sm">Post created</b>,
+                      error: <b className="text-sm">Could not post.</b>,
+                    },
+                    {
+                      className: "text-sm dark:bg-neutral-800 dark:text-white",
+                      duration: 3000,
+                    }
+                  );
                 }}
               >
                 <fieldset className="mb-[15px] flex items-center gap-5">
