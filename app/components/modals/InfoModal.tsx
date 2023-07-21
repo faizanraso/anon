@@ -2,49 +2,35 @@
 
 import React, { useEffect, useState } from "react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
+import useSWR from "swr";
+import { fetcher } from "@/app/utils/fetcher";
 
 import { programs, schools } from "@/app/utils/constants";
+import { toast } from "react-hot-toast";
 
 export default function InfoModal() {
   const [username, setUsername] = useState<string>("");
   const [school, setSchool] = useState<string>("");
   const [program, setProgram] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
-  const [isChecking, setIsChecking] = useState<boolean>(false);
+  const [isUpdating, setIsUpdating] = useState<boolean>(false);
+
+  const { data, error, isLoading } = useSWR("/api/info", fetcher);
 
   useEffect(() => {
-    async function checkInfo() {
-      const requestOptions = {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const response = await fetch("/api/info", requestOptions);
-
-      if (!response.ok) {
-        return;
-      }
-
-      const data = await response.json();
-      if (!data.complete) {
-        setOpen(true);
-      } else {
-        setOpen(false);
-      }
+    if (data && !data.complete) {
+      setOpen(true);
+    } else {
+      setOpen(false);
     }
+  }, [data]);
 
-    setIsChecking(true);
-    checkInfo();
-    setIsChecking(false);
-  }, [open]);
-
-  if (isChecking) {
-    return null;
-  }
+  if (error) toast.error("Something went wrong", { className: "text-sm" });
+  if (isLoading) return null;
 
   async function updateInfo(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsUpdating(true);
     const body = {
       username,
       school,
@@ -60,11 +46,13 @@ export default function InfoModal() {
     const response = await fetch("/api/addUserInfo", requestOptions);
 
     if (!response.ok) {
+      toast.error("Something went wrong", { className: "text-sm" });
       return;
     }
 
     setOpen(false);
-    e.preventDefault();
+    setIsUpdating(false);
+    toast.success("Information updated", { className: "text-sm" });
   }
 
   return (
@@ -139,12 +127,22 @@ export default function InfoModal() {
               </select>
             </fieldset>
             <div className="mt-[25px] flex justify-end">
-              <button
-                type="submit"
-                className="inline-flex h-[35px] items-center justify-center rounded-[4px] border border-black px-[15px] font-medium transition duration-100 hover:scale-105 focus:shadow-[0_0_0_2px] focus:outline-none dark:border-neutral-700"
-              >
-                Save changes
-              </button>
+              {!isUpdating ? (
+                <button
+                  type="submit"
+                  className="inline-flex h-[35px] items-center justify-center rounded-[4px] border border-black px-[15px] font-medium transition duration-100 hover:scale-105 focus:shadow-[0_0_0_2px] focus:outline-none dark:border-neutral-700"
+                >
+                  Save changes
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  disabled
+                  className="inline-flex items-center justify-center rounded-[4px] border border-gray-400 px-5 py-2 font-medium text-gray-400 dark:border-neutral-700 dark:text-gray-500"
+                >
+                  Save changes
+                </button>
+              )}
             </div>
           </form>
         </AlertDialog.Content>
