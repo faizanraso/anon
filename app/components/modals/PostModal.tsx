@@ -3,14 +3,20 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
+import { mutate } from "swr";
 
 export default function PostModal(props: { sessionStatus: any }) {
   const [open, setOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [postTitle, setPostTitle] = useState<string>("");
   const [postContent, setPostContent] = useState<string>("");
   const [postLength, setPostLength] = useState<number>(0);
 
   async function submitPost(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsLoading(true);
+
     const body = {
       postTitle,
       postContent,
@@ -28,7 +34,9 @@ export default function PostModal(props: { sessionStatus: any }) {
       return;
     }
 
+    mutate("/api/getAllPosts");
     setOpen(false);
+    setIsLoading(false);
   }
 
   return (
@@ -48,7 +56,11 @@ export default function PostModal(props: { sessionStatus: any }) {
               </Dialog.Title>
               <form
                 onSubmit={(e) => {
-                  submitPost(e);
+                  toast.promise(submitPost(e), {
+                    loading: <p className="text-sm">Posting...</p>,
+                    success: <b className="text-sm">Post created</b>,
+                    error: <b className="text-sm">Could not post.</b>,
+                  });
                 }}
               >
                 <fieldset className="mb-[15px] flex items-center gap-5">
@@ -79,12 +91,22 @@ export default function PostModal(props: { sessionStatus: any }) {
                 </fieldset>
                 <div className="mt-[25px] flex justify-between">
                   <p className="text-xs text-gray-500">{postLength}/2500</p>
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center rounded-[4px] border border-black px-5 py-2 font-medium transition duration-100 hover:scale-105 focus:shadow-[0_0_0_2px] focus:outline-none dark:border-neutral-700"
-                  >
-                    Post
-                  </button>
+                  {!isLoading ? (
+                    <button
+                      type="submit"
+                      className="inline-flex items-center justify-center rounded-[4px] border border-black px-5 py-2 font-medium transition duration-100 hover:scale-105 focus:shadow-[0_0_0_2px] focus:outline-none dark:border-neutral-700"
+                    >
+                      Post
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      type="submit"
+                      className="inline-flex items-center justify-center rounded-[4px] border border-black px-5 py-2 font-medium transition duration-100 hover:scale-105 focus:shadow-[0_0_0_2px] focus:outline-none dark:border-neutral-700"
+                    >
+                      Post
+                    </button>
+                  )}
                 </div>
               </form>
 

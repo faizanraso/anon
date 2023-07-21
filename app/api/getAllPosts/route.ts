@@ -8,6 +8,6 @@ export async function GET() {
     });
     return NextResponse.json(posts);
   } catch (e) {
-    return e;
+    console.log(e);
   }
 }

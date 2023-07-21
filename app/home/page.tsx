@@ -28,12 +28,6 @@ export default function Home() {
     });
   }
 
-  // toast.promise(saveSettings(settings), {
-  //   loading: "Saving...",
-  //   success: <b>Settings saved!</b>,
-  //   error: <b>Could not save.</b>,
-  // });
-
   return (
     <>
       <InfoModal />
