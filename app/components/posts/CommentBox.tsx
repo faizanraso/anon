@@ -65,7 +65,7 @@ export default function CommentBox(props: { postId: string }) {
               {" "}
               {comment.length < 1 || isLoading ? (
                 <button
-                  className="inline-block rounded border border-blue-200 bg-blue-200 px-5 py-2 text-xs font-medium text-white focus:outline-none dark:border-blue-900 dark:bg-blue-900 dark:text-gray-500"
+                  className="inline-block rounded border border-neutral-200 px-5 py-2 text-xs font-medium text-neutral-200 focus:outline-none dark:border-neutral-800  dark:text-neutral-500"
                   disabled
                 >
                   Post
@@ -81,12 +81,13 @@ export default function CommentBox(props: { postId: string }) {
                         error: <b className="text-sm">Could not post.</b>,
                       },
                       {
-                        className: "text-sm dark:bg-neutral-800 dark:text-white",
+                        className:
+                          "text-sm dark:bg-neutral-800 dark:text-white",
                         duration: 3000,
                       }
                     )
                   }
-                  className="inline-block rounded border border-blue-500 bg-blue-500 px-5 py-2 text-xs font-medium text-white hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring active:text-blue-400"
+                  className="inline-block rounded border border-black bg-transparent px-5 py-2 text-xs font-medium text-black hover:bg-black hover:text-white focus:outline-none focus:ring dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
                 >
                   Post
                 </button>

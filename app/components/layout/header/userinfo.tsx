@@ -18,8 +18,8 @@ export default function UserInfo(props: { session: any }) {
         <div className="flex items-center justify-center gap-x-3">
           <span className="group flex shrink-0 items-center rounded-lg transition">
             <span className="sr-only">Menu</span>
-            <div className=" flex h-8 w-8 items-center justify-center rounded-full bg-black object-cover text-center ">
-              <span className="text-sm font-semibold text-white">
+            <div className=" flex h-8 w-8 items-center justify-center rounded-full bg-black object-cover text-center transition duration-100 dark:bg-white dark:text-black ">
+              <span className="text-sm font-semibold text-white dark:text-black">
                 {session?.user?.name?.charAt(0)}
               </span>
             </div>
@@ -29,10 +29,10 @@ export default function UserInfo(props: { session: any }) {
                 {session?.user?.name}
               </strong>
 
-              <span className="text-gray-500"> {session?.user?.email} </span>
+              <span className="text-neutral-500"> {session?.user?.email} </span>
             </p>
             <button
-              className="ml-1 items-center justify-center rounded-full p-1.5 hover:bg-gray-200 dark:hover:bg-gray-700"
+              className="ml-1 items-center justify-center rounded-full p-1.5 hover:bg-neutral-200 dark:hover:bg-neutral-700"
               onClick={() => signOut()}
             >
               <svg
@@ -58,7 +58,7 @@ export default function UserInfo(props: { session: any }) {
         <div className="flex flex-row items-center justify-center gap-x-3">
           {" "}
           <Link href={"https://github.com/faizanraso/anon"}>
-            <span className="block text-black hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-300">
+            <span className="block text-black hover:text-neutral-500 dark:text-neutral-600 dark:hover:text-neutral-300">
               <span className="sr-only">Anon on GitHub</span>
               <svg
                 viewBox="0 0 16 16"
@@ -72,7 +72,7 @@ export default function UserInfo(props: { session: any }) {
           </Link>
           <div className="flex flex-row gap-x-3">
             <Link href={"/login"}>
-              <span className="block items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-black transition duration-200 hover:border-black hover:bg-white hover:text-black focus:outline-none focus:ring dark:border-neutral-700 dark:bg-black dark:text-white dark:hover:border-gray-300 sm:flex">
+              <span className="block items-center justify-center rounded-lg border border-neutral-200 bg-white px-3 py-2 text-xs font-medium text-black transition duration-200 hover:border-black hover:bg-white hover:text-black focus:outline-none focus:ring dark:border-neutral-700 dark:bg-black dark:text-white dark:hover:border-neutral-300 sm:flex">
                 Log In
               </span>
             </Link>

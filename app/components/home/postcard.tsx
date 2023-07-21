@@ -31,7 +31,7 @@ export default function PostCard(props: {
   return (
     <Link href={"/posts/" + props.postId}>
       <div className="px-5 md:px-1">
-        <div className="relative h-56 max-h-56 w-full rounded-md border border-black p-5 transition duration-150 hover:shadow-md dark:border-neutral-700 dark:shadow-gray-500">
+        <div className="relative h-56 max-h-56 w-full rounded-md border border-black p-5 transition duration-100 hover:shadow-md dark:border-neutral-700 dark:shadow-neutral-700">
           <div className="flex flex-row justify-end gap-x-2 pb-1 text-right">
             <p className="rounded-full bg-sky-200 px-1.5 py-1 text-[10px] text-black">
               {props.school}
@@ -47,7 +47,7 @@ export default function PostCard(props: {
             <p className="text-sm">{postContent(props.content)}</p>
           </div>
           <div className="absolute bottom-3">
-            <p className="text-xs text-gray-500 dark:text-gray-400 ">
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 ">
               {props.username}
             </p>
           </div>

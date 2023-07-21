@@ -26,7 +26,7 @@ export default function Comments(props: { postId: string }) {
   return (
     <>
       <div className="py-4">
-        <p className="text-xs text-gray-700 dark:text-gray-300">
+        <p className="text-xs text-neutral-700 dark:text-neutral-300">
           {comments?.length} comment(s)
         </p>
       </div>
@@ -39,19 +39,19 @@ export default function Comments(props: { postId: string }) {
               creation_time: string;
             }) => (
               <div key={comment.username + comment.creation_time}>
-                <div className="flex flex-col gap-y-4 border-t border-gray-200 py-4 dark:border-neutral-700">
+                <div className="flex flex-col gap-y-4 border-t border-neutral-200 py-4 dark:border-neutral-700">
                   <p className="text-xs">
                     {" "}
                     <Link
                       href={"/home/" + getFilterID(comment.school)}
-                      className="transition duration-100 hover:text-gray-600 hover:underline dark:hover:text-gray-300"
+                      className="transition duration-100 hover:text-neutral-600 hover:underline dark:hover:text-neutral-300"
                     >
                       {comment.school}
                     </Link>{" "}
                     <span>|</span>{" "}
                     <Link
                       href={"/"}
-                      className="transition duration-100 hover:text-gray-600 hover:underline dark:hover:text-gray-300"
+                      className="transition duration-100 hover:text-neutral-600 hover:underline dark:hover:text-neutral-300"
                     >
                       @{comment.username}
                     </Link>
@@ -64,7 +64,7 @@ export default function Comments(props: { postId: string }) {
                       stroke-width="1.5"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="fill-none dark:stroke-gray-300"
+                      className="fill-none dark:stroke-neutral-300"
                     >
                       <path
                         d="M12 6v6h6"
@@ -72,7 +72,7 @@ export default function Comments(props: { postId: string }) {
                         stroke-width="1.5"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        className="fill-none dark:stroke-gray-300"
+                        className="fill-none dark:stroke-neutral-300"
                       ></path>
                       <path
                         d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
@@ -80,10 +80,10 @@ export default function Comments(props: { postId: string }) {
                         stroke-width="1.5"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        className="fill-none dark:stroke-gray-300"
+                        className="fill-none dark:stroke-neutral-300"
                       ></path>
                     </svg>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">
+                    <p className="text-xs text-neutral-600 dark:text-neutral-300">
                       {compareDates(comment.creation_time)}
                     </p>
                   </div>

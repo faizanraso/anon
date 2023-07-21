@@ -9,7 +9,7 @@ export default async function Header() {
   return (
     <header
       aria-label="Page Header"
-      className=" sticky top-0 z-40 h-16 items-center justify-center border-b border-gray-200 bg-white dark:border-neutral-700 dark:bg-black"
+      className=" sticky top-0 z-40 h-16 items-center justify-center border-b border-neutral-200 bg-white dark:border-neutral-700 dark:bg-black"
     >
       <div className="mx-auto px-5 py-3 sm:px-10 sm:py-4">
         <div className="flex flex-row items-center justify-between">
@@ -42,7 +42,7 @@ export default async function Header() {
                 </svg>
               </div>
 
-              <p className="text-2xl font-semibold text-gray-900 dark:text-white sm:text-3xl">
+              <p className="text-2xl font-semibold text-neutral-900 dark:text-white sm:text-3xl">
                 anon
               </p>
             </div>
