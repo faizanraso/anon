@@ -23,8 +23,7 @@ export default function Home() {
 
   if (error) {
     toast.error("Looks like something went wrong.", {
-      className: "text-xs",
-      duration: 3000,
+      className: "text-sm",
     });
   }
 
@@ -34,17 +33,26 @@ export default function Home() {
       <Toaster position="top-right" reverseOrder={false} />
       <main className="w-full p-3 sm:ml-60">
         <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {posts?.map((post) => (
-            <PostCard
-              key={post.post_id}
-              title={post.title}
-              content={post.content}
-              school={post.school}
-              program={post.program}
-              username={post.username}
-              postId={post.post_id}
-            />
-          ))}
+          {posts?.map(
+            (post: {
+              post_id: string;
+              title: string;
+              content: string;
+              school: string;
+              program: string;
+              username: string;
+            }) => (
+              <PostCard
+                key={post.post_id}
+                title={post.title}
+                content={post.content}
+                school={post.school}
+                program={post.program}
+                username={post.username}
+                postId={post.post_id}
+              />
+            )
+          )}
         </div>
       </main>
     </>

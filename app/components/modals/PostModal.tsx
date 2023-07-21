@@ -22,6 +22,10 @@ export default function PostModal(props: { sessionStatus: any }) {
       postContent,
     };
 
+    setPostTitle("");
+    setPostContent("");
+    setPostLength(0);
+
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -31,6 +35,7 @@ export default function PostModal(props: { sessionStatus: any }) {
     const response = await fetch("/api/submitPost", requestOptions);
 
     if (!response.ok) {
+      toast.error("Something went wrong", { className: "text-sm" });
       return;
     }
 
