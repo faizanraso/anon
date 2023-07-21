@@ -5,6 +5,7 @@ import { fetcher } from "@/app/utils/fetcher";
 import useSWR from "swr";
 import Link from "next/link";
 import compareDates from "@/app/utils/compareDates";
+import getFilterID from "@/app/utils/getFilterID";
 
 export default function Comments(props: { postId: string }) {
   const [comments, setComments] = useState<any>();
@@ -42,7 +43,7 @@ export default function Comments(props: { postId: string }) {
                   <p className="text-xs">
                     {" "}
                     <Link
-                      href="/"
+                      href={"/home/" + getFilterID(comment.school)}
                       className="transition duration-100 hover:text-gray-600 hover:underline dark:hover:text-gray-300"
                     >
                       {comment.school}
