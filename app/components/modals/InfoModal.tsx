@@ -133,7 +133,7 @@ export default function InfoModal() {
                 <option disabled value="Select your program">
                   Select your program
                 </option>
-                {programs.map((val, index) => (
+                {programs.map((val) => (
                   <option key={val}>{val}</option>
                 ))}
               </select>

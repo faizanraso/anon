@@ -107,7 +107,7 @@ export default function PostModal(props: { sessionStatus: any }) {
                     <button
                       disabled
                       type="submit"
-                      className="inline-flex items-center justify-center rounded-[4px] border border-black px-5 py-2 font-medium transition duration-100 hover:scale-105 focus:shadow-[0_0_0_2px] focus:outline-none dark:border-neutral-700"
+                      className="inline-flex items-center justify-center rounded-[4px] border border-gray-400 px-5 py-2 font-medium text-gray-400 dark:border-neutral-700 dark:text-gray-500"
                     >
                       Post
                     </button>
