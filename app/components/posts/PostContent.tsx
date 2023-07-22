@@ -1,17 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Comments from "./Comments";
 import CommentBox from "./CommentBox";
 import { fetcher } from "@/app/utils/fetcher";
 import useSWR from "swr";
 
 export default function PostContent(props: { postId: string }) {
+  const [schoolFilter, setSchoolFilter] = useState<string>("");
+  const [programFilter, setProgramFilter] = useState<string>("");
+
   const { data, error, isLoading } = useSWR(
     "/api/getSelectedPost?postId=" + props.postId,
     fetcher
   );
+
+  useEffect(() => {
+    if (data) {
+      setSchoolFilter(data.school.toLowerCase().replace(/[^a-z0-9]/g, ""));
+      setProgramFilter(data.program.toLowerCase().replace(/[^a-z0-9]/g, ""));
+    }
+  }, [data]);
 
   if (!data) return null;
 
@@ -29,15 +39,15 @@ export default function PostContent(props: { postId: string }) {
           <div className="flex flex-row gap-2 py-5 text-neutral-500 dark:text-neutral-400">
             <p>
               <span className="text-sm transition duration-100 hover:text-neutral-600 hover:underline dark:hover:text-neutral-300">
-                <Link href="/">{data.school}</Link>
+                <Link href={"/home/" + schoolFilter}>{data.school}</Link>
               </span>{" "}
               -{" "}
               <span className="text-sm transition duration-100 hover:text-neutral-600 hover:underline dark:hover:text-neutral-300">
-                <Link href={"/"}>{data.program}</Link>
+                <Link href={"/home/" + programFilter}>{data.program}</Link>
               </span>{" "}
               -{" "}
               <span className="text-sm transition duration-100 hover:text-neutral-600 hover:underline dark:hover:text-neutral-300">
-                <Link href={"/"}>{data.username}</Link>
+                <Link href={"/user/" + data.username}>{data.username}</Link>
               </span>
             </p>
           </div>
