@@ -42,7 +42,7 @@ export default function PostModal(props: { sessionStatus: any }) {
       return;
     }
 
-    mutate("/api/getAllPosts");
+    mutate("/api/getAllPosts?page=1");
     setOpen(false);
     setIsLoading(false);
   }

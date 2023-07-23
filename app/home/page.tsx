@@ -11,16 +11,17 @@ import toast, { Toaster } from "react-hot-toast";
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [maxPage, setMaxPage] = useState<number | undefined>();
+  const [maxPage, setMaxPage] = useState<number>(1);
 
   const { data, error, isLoading } = useSWR(
-    "/api/getAllPosts?scrollLevel=" + page,
+    "/api/getAllPosts?page=" + page,
     fetcher
   );
 
   useEffect(() => {
-    setPosts(data);
-    data ? setMaxPage((data.length % 12) + 1) : null;
+    data ? setPosts(data.posts) : null;
+    data ? setMaxPage(Math.floor(data.count / 12) + 1) : null;
+    data ? console.log(Math.floor(data.count / 12) + 1) : null;
   }, [data]);
 
   if (isLoading) {
@@ -39,29 +40,7 @@ export default function Home() {
       <InfoModal />
       <Toaster position="top-right" reverseOrder={false} />
       <main className="w-full p-3 sm:ml-60">
-        <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {posts?.map(
-            (post: {
-              post_id: string;
-              title: string;
-              content: string;
-              school: string;
-              program: string;
-              username: string;
-            }) => (
-              <PostCard
-                key={post.post_id}
-                title={post.title}
-                content={post.content}
-                school={post.school}
-                program={post.program}
-                username={post.username}
-                postId={post.post_id}
-              />
-            )
-          )}
-        </div>
-        <div className="flex w-full items-center justify-center gap-x-2 p-5">
+        <section className="flex w-full items-center justify-center gap-x-2 p-5 ">
           {page === 1 ? (
             <button disabled>
               <svg
@@ -88,7 +67,7 @@ export default function Home() {
               </svg>
             </button>
           ) : (
-            <button>
+            <button onClick={() => setPage(page - 1)}>
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path
                   stroke="currentColor"
@@ -108,7 +87,7 @@ export default function Home() {
             </button>
           )}
 
-          {maxPage === page ? (
+          {page >= maxPage ? (
             <button disabled>
               <svg
                 width="24"
@@ -134,7 +113,7 @@ export default function Home() {
               </svg>
             </button>
           ) : (
-            <button>
+            <button onClick={() => setPage(page + 1)}>
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path
                   stroke="currentColor"
@@ -153,7 +132,29 @@ export default function Home() {
               </svg>
             </button>
           )}
-        </div>
+        </section>
+        <section className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {posts?.map(
+            (post: {
+              post_id: string;
+              title: string;
+              content: string;
+              school: string;
+              program: string;
+              username: string;
+            }) => (
+              <PostCard
+                key={post.post_id}
+                title={post.title}
+                content={post.content}
+                school={post.school}
+                program={post.program}
+                username={post.username}
+                postId={post.post_id}
+              />
+            )
+          )}
+        </section>
       </main>
     </>
   );
