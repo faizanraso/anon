@@ -65,7 +65,7 @@ export default function CommentBox(props: { postId: string }) {
               {" "}
               {comment.length < 1 || isLoading ? (
                 <button
-                  className="inline-block rounded border border-neutral-200 px-5 py-2 text-xs font-medium text-neutral-200 focus:outline-none dark:border-neutral-800  dark:text-neutral-500"
+                  className="inline-block rounded border border-neutral-300 px-5 py-2 text-xs font-medium text-neutral-300 focus:outline-none dark:border-neutral-800  dark:text-neutral-500"
                   disabled
                 >
                   Post
