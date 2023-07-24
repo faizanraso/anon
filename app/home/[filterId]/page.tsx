@@ -39,6 +39,29 @@ export default function FilteredHome({
     <>
       <InfoModal />
       <main className="w-full p-3 sm:ml-60">
+        <section className="min-h-screen">
+          {posts && posts.length > 0 ? (
+            <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              {posts?.map((post) => (
+                <PostCard
+                  key={post.post_id}
+                  title={post.title}
+                  content={post.content}
+                  school={post.school}
+                  program={post.program}
+                  username={post.username}
+                  postId={post.post_id}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex items-center justify-center justify-items-center py-3">
+              <p className="text-md font-medium">
+                Looks like there are no posts in this category yet.
+              </p>
+            </div>
+          )}
+        </section>
         <section className="flex w-full items-center justify-center gap-x-2 p-5 ">
           {page === 1 ? (
             <button disabled>
@@ -130,29 +153,6 @@ export default function FilteredHome({
                 ></path>
               </svg>
             </button>
-          )}
-        </section>
-        <section>
-          {posts && posts.length > 0 ? (
-            <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {posts?.map((post) => (
-                <PostCard
-                  key={post.post_id}
-                  title={post.title}
-                  content={post.content}
-                  school={post.school}
-                  program={post.program}
-                  username={post.username}
-                  postId={post.post_id}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="flex items-center justify-center justify-items-center py-3">
-              <p className="text-md font-medium">
-                Looks like there are no posts in this category yet.
-              </p>
-            </div>
           )}
         </section>
       </main>

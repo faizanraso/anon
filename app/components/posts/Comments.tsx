@@ -9,14 +9,17 @@ import getFilterID from "@/app/utils/getFilterID";
 
 export default function Comments(props: { postId: string }) {
   const [comments, setComments] = useState<any>();
+  const [commentLevel, setCommentLevel] = useState<number>(1);
+  const [totalComments, setTotalComments] = useState<number>(0);
 
   const { data, error, isLoading } = useSWR(
-    "/api/getComments?postId=" + props.postId,
+    "/api/getComments?postId=" + props.postId + "&commentLevel=" + commentLevel,
     fetcher
   );
 
   useEffect(() => {
-    setComments(data);
+    data ? setComments(data.comments) : null;
+    data ? setTotalComments(data.count) : null;
   }, [data]);
 
   if (isLoading) return null;
@@ -27,7 +30,7 @@ export default function Comments(props: { postId: string }) {
     <>
       <div className="py-4">
         <p className="text-xs text-neutral-700 dark:text-neutral-300">
-          {comments?.length} comment(s)
+          {totalComments} comment(s)
         </p>
       </div>
       {comments
@@ -92,6 +95,16 @@ export default function Comments(props: { postId: string }) {
             )
           )
         : null}
+      {totalComments > 3 * commentLevel ? (
+        <div className="w-full items-center justify-center text-center">
+          <button
+            onClick={() => setCommentLevel(commentLevel + 1)}
+            className="p-3 text-xs font-medium"
+          >
+            Load more...
+          </button>
+        </div>
+      ) : null}
     </>
   );
 }
