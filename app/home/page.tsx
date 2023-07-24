@@ -39,7 +39,7 @@ export default function Home() {
       <InfoModal />
       <Toaster position="top-right" reverseOrder={false} />
       <main className="w-full p-3 sm:ml-60">
-        <section className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <section className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 min-h-screen">
           {posts?.map(
             (post: {
               post_id: string;

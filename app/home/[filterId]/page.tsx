@@ -39,7 +39,7 @@ export default function FilteredHome({
     <>
       <InfoModal />
       <main className="w-full p-3 sm:ml-60">
-        <section>
+        <section className="min-h-screen">
           {posts && posts.length > 0 ? (
             <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {posts?.map((post) => (
