@@ -96,9 +96,14 @@ export default function Comments(props: { postId: string }) {
           )
         : null}
       {totalComments > 3 * commentLevel ? (
-        <button onClick={() => setCommentLevel(commentLevel + 1)}>
-          Load more...
-        </button>
+        <div className="w-full items-center justify-center text-center">
+          <button
+            onClick={() => setCommentLevel(commentLevel + 1)}
+            className="text-xs font-medium p-3"
+          >
+            Load more...
+          </button>
+        </div>
       ) : null}
     </>
   );
