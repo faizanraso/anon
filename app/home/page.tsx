@@ -21,7 +21,6 @@ export default function Home() {
   useEffect(() => {
     data ? setPosts(data.posts) : null;
     data ? setMaxPage(Math.floor(data.count / 12) + 1) : null;
-    data ? console.log(Math.floor(data.count / 12) + 1) : null;
   }, [data]);
 
   if (isLoading) {
