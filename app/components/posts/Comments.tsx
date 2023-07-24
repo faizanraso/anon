@@ -99,7 +99,7 @@ export default function Comments(props: { postId: string }) {
         <div className="w-full items-center justify-center text-center">
           <button
             onClick={() => setCommentLevel(commentLevel + 1)}
-            className="text-xs font-medium p-3"
+            className="p-3 text-xs font-medium"
           >
             Load more...
           </button>
