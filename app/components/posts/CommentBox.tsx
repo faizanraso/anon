@@ -44,7 +44,7 @@ export default function CommentBox(props: { postId: string }) {
       return;
     }
 
-    mutate("/api/getComments?postId=" + props.postId);
+    mutate("/api/getComments?postId=" + props.postId + "&commentLevel=1");
     setIsLoading(false);
   }
 
