@@ -6,6 +6,7 @@ import Comments from "./Comments";
 import CommentBox from "./CommentBox";
 import { fetcher } from "@/app/utils/fetcher";
 import useSWR from "swr";
+import CommentContext from "../../context/CommentContext";
 
 export default function PostContent(props: { postId: string }) {
   const [schoolFilter, setSchoolFilter] = useState<string>("");
@@ -56,12 +57,14 @@ export default function PostContent(props: { postId: string }) {
           </div>
         </div>
       </section>
-      <section className="flex w-full border border-neutral-200 px-10 py-4 dark:border-neutral-700">
-        <CommentBox postId={data.post_id} />
-      </section>
-      <section className="mt-4 border border-neutral-200 px-10  dark:border-neutral-700">
-        <Comments postId={data.post_id} />
-      </section>
+      <CommentContext>
+        <section className="flex w-full border border-neutral-200 px-10 py-4 dark:border-neutral-700">
+          <CommentBox postId={data.post_id} />
+        </section>
+        <section className="mt-4 border border-neutral-200 px-10  dark:border-neutral-700">
+          <Comments postId={data.post_id} />
+        </section>
+      </CommentContext>
     </main>
   );
 }
