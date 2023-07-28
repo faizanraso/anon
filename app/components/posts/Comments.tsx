@@ -1,21 +1,24 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { fetcher } from "@/app/utils/fetcher";
 import useSWR from "swr";
 import Link from "next/link";
 import compareDates from "@/app/utils/compareDates";
 import getFilterID from "@/app/utils/getFilterID";
+import { CommentContext } from "@/app/context/CommentContext";
 
 export default function Comments(props: { postId: string }) {
   const [comments, setComments] = useState<any>();
-  const [commentLevel, setCommentLevel] = useState<number>(1);
+  const [commentLevel, setCommentLevel] = useContext(CommentContext);
   const [totalComments, setTotalComments] = useState<number>(0);
 
   const { data, error, isLoading } = useSWR(
     "/api/getComments?postId=" + props.postId + "&commentLevel=" + commentLevel,
     fetcher
   );
+
+  console.log(commentLevel);
 
   useEffect(() => {
     data ? setComments(data.comments) : null;

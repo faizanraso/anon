@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { mutate } from "swr";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import { CommentContext } from "@/app/context/CommentContext";
 
 export default function CommentBox(props: { postId: string }) {
   const [comment, setComment] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [commentLevel, setCommentLevel] = useContext(CommentContext);
   const { data: session, status } = useSession();
 
   async function postComment(
@@ -44,7 +46,12 @@ export default function CommentBox(props: { postId: string }) {
       return;
     }
 
-    mutate("/api/getComments?postId=" + props.postId + "&commentLevel=1");
+    mutate(
+      "/api/getComments?postId=" +
+        props.postId +
+        "&commentLevel=" +
+        commentLevel
+    );
     setIsLoading(false);
   }
 
