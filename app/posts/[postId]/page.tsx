@@ -18,7 +18,7 @@ export default function PostPage({ params }: { params: { postId: string } }) {
       <div className="flex w-full flex-row px-7 py-3">
         <PostContent postId={params.postId} />
         <div className="hidden pl-5 pt-4 lg:flex lg:flex-1">
-          <SuggestedPosts />
+          {mounted ? <SuggestedPosts /> : null}
         </div>
       </div>
     </>
