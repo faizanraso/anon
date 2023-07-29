@@ -27,7 +27,7 @@ export default function SuggestedPosts() {
 
         {posts
           ? posts.map((post) => (
-              <Link href={"/posts/" + post.post_id}>
+              <Link href={"/posts/" + post.post_id} key={post.post_id}>
                 <div className="border-t border-neutral-200 px-3 py-3 transition duration-100 dark:border-neutral-700">
                   <p className="text-sm">{post.title}</p>
                 </div>
