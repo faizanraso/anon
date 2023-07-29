@@ -1,14 +1,37 @@
 "use client";
 
-import React from "react";
+import { fetcher } from "@/app/utils/fetcher";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import useSWR from "swr";
 
 export default function SuggestedPosts() {
+  const [posts, setPosts] = useState<any[]>([]);
+  const { data, error, isLoading } = useSWR("/api/getSuggestedPosts", fetcher);
+
+  useEffect(() => {
+    data ? setPosts(data) : null;
+
+    console.log(data);
+  }, [data]);
+
+  if (error) return null;
+  if (isLoading) return null;
+
   return (
-    <section className="hidden pl-5 pt-4 lg:flex lg:flex-1">
-      <div className="w-full border border-neutral-200 dark:border-neutral-700">
-        <div className="px-1 py-3">
-          <h1 className="text-center font-semibold">Suggested Posts</h1>
-          {}
+    <section className="w-full ">
+      <div className="fixed border border-neutral-200 dark:border-neutral-700 lg:w-2/12">
+        <div className="py-4">
+          <h1 className="px-3 pb-2 font-semibold">Suggested Posts</h1>
+          {posts
+            ? posts.map((post) => (
+                <Link href={"/posts/" + post.post_id}>
+                  <div className="border-t border-neutral-200 px-3 py-4 transition duration-100 dark:border-neutral-700">
+                    <p className="text-sm">{post.title}</p>
+                  </div>
+                </Link>
+              ))
+            : null}
         </div>
       </div>
     </section>

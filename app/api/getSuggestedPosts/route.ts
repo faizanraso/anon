@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   try {
-    const count = await prisma.post.count();
     let allPosts = await prisma.post.findMany();
 
     let posts = allPosts
@@ -12,7 +11,7 @@ export async function GET(req: Request) {
       .map(({ value }) => value)
       .slice(0, 5);
 
-    return NextResponse.json({ posts, count });
+    return NextResponse.json(posts);
   } catch (e) {
     return e;
   }

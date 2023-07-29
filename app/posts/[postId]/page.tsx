@@ -17,7 +17,9 @@ export default function PostPage({ params }: { params: { postId: string } }) {
       <InfoModal />
       <div className="flex w-full flex-row px-7 py-3">
         <PostContent postId={params.postId} />
-        <SuggestedPosts />
+        <div className="hidden pl-5 pt-4 lg:flex lg:flex-1">
+          <SuggestedPosts />
+        </div>
       </div>
     </>
   );
