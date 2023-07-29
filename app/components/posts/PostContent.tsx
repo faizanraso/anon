@@ -48,7 +48,7 @@ export default function PostContent(props: { postId: string }) {
               </span>{" "}
               -{" "}
               <span className="text-sm transition duration-100 hover:text-neutral-600 hover:underline dark:hover:text-neutral-300">
-                <Link href={"/user/" + data.username}>{data.username}</Link>
+                <a className="">{data.username}</a>
               </span>
             </p>
           </div>
