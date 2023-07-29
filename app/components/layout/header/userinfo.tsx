@@ -32,23 +32,24 @@ export default function UserInfo(props: { session: any }) {
               <span className="text-neutral-500"> {session?.user?.email} </span>
             </p>
             <button
-              className="ml-1 items-center justify-center rounded-full p-1.5 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+              className="ml-1 items-center justify-center rounded-full p-1.5 transition duration-100 hover:bg-neutral-200 dark:hover:bg-neutral-700"
               onClick={() => signOut()}
             >
               <svg
                 className="stroke-red-500"
                 height={18}
-                strokeWidth="2"
+                stroke-width="1.5"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                color="#000000"
               >
                 <path
-                  d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243"
+                  d="M12 12h7m0 0l-3 3m3-3l-3-3M19 6V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-1"
                   className="stroke-red-500"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 ></path>
               </svg>
             </button>
