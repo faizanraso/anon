@@ -4,10 +4,10 @@ Anon is a web application built using Next.js, Tailwind CSS, Radix UI, React Con
 
 ## Features
 
-**Commenting:** Users can comment on posts, adding their perspectives to ongoing discussions.
-**Sorting and Filtering:** Posts can be sorted and filtered based on various criteria, such as popularity or recency.
-**OAuth Integration:** Simplified user authentication using OAuth for a seamless login experience.
-**Next.js API Routes:** Leveraging Next.js API routes to handle backend logic and data retrieval.
-**Prisma ORM:** Utilizing Prisma to interact with the database, making data management efficient and straightforward.
-**React Context:** Implementing React Context for state management and global accessibility of certain data.
-**Responsive Design:** Ensuring a smooth and consistent user experience across various devices.
+***Commenting:** Users can comment on posts, adding their perspectives to ongoing discussions.
+***Sorting and Filtering:** Posts can be sorted and filtered based on various criteria, such as popularity or recency.
+***OAuth Integration:** Simplified user authentication using OAuth for a seamless login experience.
+***Next.js API Routes:** Leveraging Next.js API routes to handle backend logic and data retrieval.
+***Prisma ORM:** Utilizing Prisma to interact with the database, making data management efficient and straightforward.
+***React Context:** Implementing React Context for state management and global accessibility of certain data.
+***Responsive Design:** Ensuring a smooth and consistent user experience across various devices.
