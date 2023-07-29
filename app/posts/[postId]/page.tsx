@@ -2,14 +2,24 @@
 
 import InfoModal from "@/app/components/modals/InfoModal";
 import PostContent from "@/app/components/posts/PostContent";
-import React from "react";
+import SuggestedPosts from "@/app/components/posts/SuggestedPosts";
+import React, { useEffect, useState } from "react";
 
 export default function PostPage({ params }: { params: { postId: string } }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <>
       <InfoModal />
-      <div className="w-full px-7 py-3 sm:ml-60 lg:w-7/12 ">
+      <div className="flex w-full flex-row px-7 py-3">
         <PostContent postId={params.postId} />
+        <div className="hidden pl-5 pt-4 lg:flex lg:flex-1">
+          <SuggestedPosts />
+        </div>
       </div>
     </>
   );

@@ -18,8 +18,6 @@ export default function Comments(props: { postId: string }) {
     fetcher
   );
 
-  console.log(commentLevel);
-
   useEffect(() => {
     data ? setComments(data.comments) : null;
     data ? setTotalComments(data.count) : null;
