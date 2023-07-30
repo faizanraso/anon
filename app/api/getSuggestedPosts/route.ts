@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   try {
-    let allPosts = await prisma.post.findMany();
+    let allPosts = await prisma.post.findMany({ where: {} });
 
     let posts = allPosts
       .map((value) => ({ value, sort: Math.random() }))
