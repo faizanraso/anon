@@ -14,4 +14,7 @@ Anon is a web application built using Next.js, Tailwind CSS, Radix UI, React Con
   <li><strong>Responsive Design</strong>: Ensuring a smooth and consistent user experience across various devices.</li>
 </ul>
 
+<br>
+<br>
+
 ![image](https://github.com/faizanraso/anon/assets/59986120/25b7aed0-728a-4f27-bc68-588fb12552a4)
