@@ -31,7 +31,7 @@ export default function PostContent(props: { postId: string }) {
   if (error) return "error";
 
   return (
-    <main className="flex flex-col sm:ml-60 lg:w-7/12">
+    <main className="flex flex-col w-full">
       <section className="py-4">
         <div className="border border-neutral-200 px-10 py-5 dark:border-neutral-700">
           <div>
