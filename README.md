@@ -1,5 +1,4 @@
 # [Anon - Anonymous School/Program Discussion Web App](https://anon-edu.vercel.app)
-
 Anon is a web application built using Next.js, Tailwind CSS, Radix UI, React Context, OAuth, and Prisma. It serves as a platform for users to discuss school or program-related topics anonymously, much like apps like Reddit and Blind. With Anon, users can share their thoughts, ask questions, and engage in conversations with others.
 
 ## Features
