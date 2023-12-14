@@ -1,0 +1,38 @@
+diff --git a/prisma/schema.prisma b/prisma/schema.prisma
+index d47de62..995b74c 100644
+--- a/prisma/schema.prisma
++++ b/prisma/schema.prisma
+@@ -54,6 +54,7 @@ model User {
+   sessions      Session[]
+   Posts         Post[]
+   Comment       Comment[]
++  Shares        Shares[]
+ 
+   @@unique([id, username])
+   @@unique([id, username, school])
+@@ -78,6 +79,7 @@ model Post {
+   school        String
+   program       String
+   comments      Comment[]
++  Shares        Shares[]
+ 
+   @@index([userId, username])
+ }
+@@ -96,3 +98,17 @@ model Comment {
+   @@index([userId, username, school])
+   @@index([post_id])
+ }
++
++model Shares {
++  user       User   @relation(fields: [userId, username, school], references: [id, username, school], onDelete: Cascade)
++  username   String
++  school     String
++  comment_id String @id @default(cuid())
++  userId     String
++  platform   String
++  Post       Post   @relation(fields: [post_id], references: [post_id], onDelete: Cascade)
++  post_id    String
++
++  @@index([post_id])
++  @@index([userId, username, school])
++}
